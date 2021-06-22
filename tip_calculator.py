@@ -12,4 +12,4 @@ number_of_persons = int(input("How many people to split the bill?" ))
 multiplier = 1 + tip / 100
 amount_with_tip = amount * multiplier
 each_person_pays = amount_with_tip/number_of_persons
-print("Each person should pay: $ {:.2f}".format(each_person_pays))
+print("Each person should pay: ${:.2f}".format(each_person_pays))
