@@ -20,25 +20,37 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
 /______/______/______/______/______/______/______/______/______/______/_____ /
 *******************************************************************************
 ''')
-print("Welcome to Treasure Island.")
-print("Your mission is to find the treasure.")
-print("Question that prompts player to choose direction.")
+print("Welcome to Treasure Island!")
+print("You arrive on an island with a mission to find the treasure.")
+print("Unfortunately, you are not given a map so you must use your intuition to find it.")
+print("You proceed along the dirt path until you get to a fork in the road.")
+print("You can either go right and head towards the forest or left and head towards the river.")
 direction = input("Which way do you go (left or right)? ").lower()
 if direction == "left":
-    print("Question that prompts player to choose swim or wait.")
+    print("You choose to go left and head towards the river.")
+    print("From the river bank you can see a cabin on the other side.")
+    print("You estimate the river is 100 meters wide.")
+    print("There's a sign that says the boat to cross arrives at the top of every hour.")
+    print("You can either swim across to the other side of the river or wait for the next boat.")
     transport = input("Do you swim or wait? ").lower()
     if transport == "wait":
-        print("Question that prompts user to choose color door.")
+        print("You decide to wait for the boat.")
+        print("At the top of the hour it arrives and you make it safely to the other side.")
+        print("You enter the cabin and find yourself in a hallway with three closed doors.")
+        print("To your left is a blue door. To your right is a yellow door. Straight ahead is a red door.")
         color = input("Which door do you go through (red, yellow or blue)? ").lower()
         if color == "yellow":
-            print("You find the treasure. You win!")
+            print("You open the yellow door and find a treasure chest. You win!")
         elif color == "red":
-            print("Burned by fire. Game Over.")
+            print("You open the red door and you're immediately engufled in flames. Game Over.")
         elif color == "blue":
-            print("Eaten by beasts. Game Over.")
+            print("You open the blue door and you're attacked by beasts. Game Over.")
         else:
-            print("You didn't choose a door. Game Over.")
+            print("You don't choose a door and instead decide to leave. Game Over.")
     else:
-        print("Attacked by trout. Game Over.")
+        print("You're eager to get across the river so you opt to swim.")
+        print("You swim about halfway to the other side when you're attacked by trout. Game Over.")
 else:
-    print("Fall into a hole. Game Over.")
+    print("You choose to go right and head towards the forest.")
+    print("As you approach the forest it becomes harder and harder to see.")
+    print("You fall into a hole. Game Over.")
