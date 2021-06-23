@@ -32,7 +32,7 @@ if direction == "left":
     print("You estimate the river is 100 meters wide.")
     print("There's a sign that says the boat to cross arrives at the top of every hour.")
     print("You can either swim across to the other side of the river or wait for the next boat.")
-    transport = input("Do you swim or wait? ").lower()
+    transport = input("What do you do (swim or wait)? ").lower()
     if transport == "wait":
         print("You decide to wait for the boat.")
         print("At the top of the hour it arrives and you make it safely to the other side.")
@@ -47,10 +47,14 @@ if direction == "left":
             print("You open the blue door and you're attacked by beasts. Game Over.")
         else:
             print("You don't choose a door and instead decide to leave. Game Over.")
-    else:
+    elif transport == "swim":
         print("You're eager to get across the river so you opt to swim.")
         print("You swim about halfway to the other side when you're attacked by trout. Game Over.")
-else:
+    else:
+        print("You decide you don't actually want to find the treasure. Game Over.")
+elif direction == "right":
     print("You choose to go right and head towards the forest.")
     print("As you approach the forest it becomes harder and harder to see.")
     print("You fall into a hole. Game Over.")
+else:
+    print("You decide you don't actually want to find the treasure. Game Over.")
