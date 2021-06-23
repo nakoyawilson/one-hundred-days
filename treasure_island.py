@@ -38,5 +38,7 @@ if direction == "left":
             print("Eaten by beasts. Game Over.")
         else:
             print("You didn't choose a door. Game Over.")
+    else:
+        print("Attacked by trout. Game Over.")
 else:
     print("Fall into a hole. Game Over.")
