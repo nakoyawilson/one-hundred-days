@@ -42,7 +42,7 @@ print("Computer chose:")
 print(choice_list[computer_choice])
 if player_choice == computer_choice:
     print("It's a tie.")
-if (player_choice == 0 and computer_choice == 2) or (player_choice == 2 and computer_choice == 1) or (player_choice == 1 and computer_choice == 0):
+elif (player_choice == 0 and computer_choice == 2) or (player_choice == 2 and computer_choice == 1) or (player_choice == 1 and computer_choice == 0):
     print("You win!")
 else:
     print("You lose.")
