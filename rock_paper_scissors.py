@@ -35,7 +35,13 @@ print("The outcome of the game is determined by 3 simple rules:")
 print("\t- Rock wins against scissors.")
 print("\t- Scissors win against paper.")
 print("\t- Paper wins against rock.")
-player_choice = int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n"))
+while True:
+    player_choice_as_string = input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n")
+    if player_choice_as_string.isnumeric() and (player_choice_as_string == "0" or player_choice_as_string == "1" or player_choice_as_string == "2"):
+        break
+    else:
+        continue
+player_choice = int(player_choice_as_string)
 print(choice_list[player_choice])
 computer_choice = random.randint(0,2)
 print("Computer chose:")
