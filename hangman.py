@@ -28,10 +28,9 @@ guess = input("Guess a letter: ").lower()
 #e.g. If the user guessed "p" and the chosen word was "apple", then display should be ["_", "p", "p", "_", "_"].
 if guess in chosen_word:
     # Reveal letter
-    for letter in chosen_word:
+    for index, letter in enumerate(chosen_word):
         if letter == guess:
-            letter_index = chosen_word.index(letter)
-            display[letter_index] = guess
+            display[index] = guess
     print(display)
 else:
     # Lose a life
