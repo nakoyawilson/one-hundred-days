@@ -47,6 +47,7 @@ while "_" in display:
 
     else:
         # Lose a life
+        print(f"You guessed {guess}, that's not in the word. You lose a life.")
         print(f"{' '.join(display)}")
         lives -= 1
         print(hangman_art.stages[lives])
