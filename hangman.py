@@ -68,9 +68,6 @@ chosen_word = random.choice(word_list)
 #Set 'lives' to equal 6.
 lives = 6
 
-#Testing code
-print(f'Pssst, the solution is {chosen_word}.')
-
 # Create an empty List called display.
 display = []
 word_length = len(chosen_word)
