@@ -17,7 +17,6 @@ display = []
 word_length = len(chosen_word)
 for letter in range(word_length):
     display.append("_")
-print(display)
 
 # Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
 guess = input("Guess a letter: ").lower()
@@ -31,10 +30,10 @@ if guess in chosen_word:
     for index, letter in enumerate(chosen_word):
         if letter == guess:
             display[index] = guess
-    print(display)
 else:
     # Lose a life
     pass
 
 # TODO-3: - Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
 # Hint - Don't worry about getting the user to guess the next letter. We'll tackle that in step 3.
+print(display)
