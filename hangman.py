@@ -23,12 +23,16 @@ for letter in range(word_length):
     display.append("_")
 
 # Use a while loop to let the user guess again.
+user_guess = []
 while "_" in display:
 
     # Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
     guess = input("Guess a letter: ").lower()
+    user_guess.append(guess)
 
     # TODO-4: - If the user has entered a letter they've already guessed, print the letter and let them know.
+    if guess in user_guess:
+        print(f"You've already guessed {guess}")
 
     # Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
     if guess in chosen_word:
@@ -52,7 +56,7 @@ while "_" in display:
         lives -= 1
         print(hangman_art.stages[lives])
         if lives == 0:
-            print("You lose.")
+            print(f"You lose.\nThe word was {chosen_word}.")
             break
 
 #TODO-2: - Import the stages from hangman_art.py and make this error go away.
