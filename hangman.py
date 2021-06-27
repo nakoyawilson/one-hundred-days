@@ -28,10 +28,11 @@ while "_" in display:
 
     # Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
     guess = input("Guess a letter: ").lower()
-    user_guess.append(guess)
 
     # TODO-4: - If the user has entered a letter they've already guessed, print the letter and let them know.
-    if guess in user_guess:
+    if guess not in user_guess:
+        user_guess.append(guess)
+    else:
         print(f"You've already guessed {guess}")
 
     # Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
