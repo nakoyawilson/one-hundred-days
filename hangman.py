@@ -1,66 +1,10 @@
 import random
 import hangman_words
+import hangman_art
 
 #Step 5
 
 #TODO-1: - Update the word list to use the 'word_list' from hangman_words.py
-
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''']
 
 # Randomly choose a word from the word_list and assign it to a variable called chosen_word.
 chosen_word = random.choice(hangman_words.word_list)
@@ -92,7 +36,7 @@ while "_" in display:
             if letter == guess:
                 display[index] = guess
                 print(f"{' '.join(display)}")
-                print(stages[lives])
+                print(hangman_art.stages[lives])
                 if "_" not in display:
                     print("You win!")
 
@@ -104,7 +48,7 @@ while "_" in display:
         # Lose a life
         print(f"{' '.join(display)}")
         lives -= 1
-        print(stages[lives])
+        print(hangman_art.stages[lives])
         if lives == 0:
             print("You lose.")
             break
