@@ -11,3 +11,7 @@ chosen_word = random.choice(word_list)
 guess = input("Guess a letter: ").lower()
 
 #TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
+if guess in chosen_word:
+    # Reveal letter
+else:
+    # Lose a life
