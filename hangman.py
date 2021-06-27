@@ -22,6 +22,8 @@ word_length = len(chosen_word)
 for letter in range(word_length):
     display.append("_")
 
+print(f"Your word is:\n{' '.join(display)}")
+
 # Use a while loop to let the user guess again.
 user_guess = []
 while "_" in display:
