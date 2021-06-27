@@ -106,7 +106,7 @@ while "_" in display:
         print(stages[lives-1])
         lives -= 1
         if lives == 0:
-            print("You lose")
+            print("You lose.")
             break
 
     # Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
