@@ -42,3 +42,7 @@ while continue_program == "yes":
     shift = int(input("Type the shift number:\n"))
     caesar(start_text=text, cipher_direction=direction,shift_amount=shift)
     continue_program = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n").lower()
+
+# Print goodbye message when user exits program
+if continue_program == "no":
+    print("Goodbye!")
