@@ -37,8 +37,8 @@ print(logo)
 # Ask user if they want to restart program
 continue_program = "yes"
 while continue_program == "yes":
-    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
     text = input("Type your message:\n").lower()
     shift = int(input("Type the shift number:\n"))
     caesar(start_text=text, cipher_direction=direction,shift_amount=shift)
-    continue_program = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n")
+    continue_program = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n").lower()
