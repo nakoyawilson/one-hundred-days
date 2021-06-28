@@ -2,11 +2,11 @@ alphabet = ["a", "b" ,"c" ,"d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 text = input("Type your message:\n").lower()
-method = input("Would you like to encode or decode? ")
+direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 shift = int(input("Type the shift number:\n"))
 
 new_message = ""
-if method == "encode":
+if direction == "encode":
     for char in text:
         if alphabet.index(char) + shift < 26:
             new_index = alphabet.index(char) + shift
