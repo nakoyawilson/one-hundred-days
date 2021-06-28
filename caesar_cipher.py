@@ -8,8 +8,11 @@ def caesar(start_text, cipher_direction, shift_amount):
     if shift_amount > 26:
         shift_amount = shift_amount % 26
     end_text = ""
-    if cipher_direction == "encode":
-        for char in start_text:
+    for char in start_text:
+        # Keep chracters that are not in alphabet
+        if char not in alphabet:
+            end_text += char
+        elif cipher_direction == "encode":
             if alphabet.index(char) + shift_amount < 26:
                 new_index = alphabet.index(char) + shift_amount
                 new_char = alphabet[new_index]
@@ -18,8 +21,7 @@ def caesar(start_text, cipher_direction, shift_amount):
                 new_index = alphabet.index(char) + shift_amount - 26
                 new_char = alphabet[new_index]
                 end_text += new_char
-    else:
-        for char in start_text:
+        else:
             if alphabet.index(char) - shift_amount >= 0:
                 new_index = alphabet.index(char) - shift_amount
                 new_char = alphabet[new_index]
@@ -32,8 +34,12 @@ def caesar(start_text, cipher_direction, shift_amount):
 
 # Import and print logo from caesar_cipher_Art.py when the program starts
 print(logo)
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
 
-caesar(start_text=text, cipher_direction=direction,shift_amount=shift)
+# Ask user if they want to restart program
+continue_program = "yes"
+while continue_program == "yes":
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    caesar(start_text=text, cipher_direction=direction,shift_amount=shift)
+    continue_program = input("Type 'yes' if you want to go again. Otherwise type 'no'.\n")
