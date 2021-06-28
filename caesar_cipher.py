@@ -4,6 +4,9 @@ alphabet = ["a", "b" ,"c" ,"d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 def caesar(start_text, cipher_direction, shift_amount):
+    # Program continues to work if user enters shift number greater than 26
+    if shift_amount > 26:
+        shift_amount = shift_amount % 26
     end_text = ""
     if cipher_direction == "encode":
         for char in start_text:
