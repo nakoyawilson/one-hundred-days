@@ -6,27 +6,27 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 shift = int(input("Type the shift number:\n"))
 
 def caesar(start_text, cipher_direction, shift_amount):
-    new_text = ""
+    end_text = ""
     if cipher_direction == "encode":
         for char in start_text:
             if alphabet.index(char) + shift_amount < 26:
                 new_index = alphabet.index(char) + shift_amount
                 new_char = alphabet[new_index]
-                new_text += new_char
+                end_text += new_char
             else:
                 new_index = alphabet.index(char) + shift_amount - 26
                 new_char = alphabet[new_index]
-                new_text += new_char
+                end_text += new_char
     else:
         for char in start_text:
             if alphabet.index(char) - shift_amount >= 0:
                 new_index = alphabet.index(char) - shift_amount
                 new_char = alphabet[new_index]
-                new_text += new_char
+                end_text += new_char
             else:
                 new_index = alphabet.index(char) + 26 - shift_amount
                 new_char = alphabet[new_index]
-                new_text += new_char
-    print(new_text)
+                end_text += new_char
+    print(end_text)
 
 caesar(start_text=text, cipher_direction=direction,shift_amount=shift)
