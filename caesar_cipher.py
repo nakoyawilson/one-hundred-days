@@ -29,7 +29,7 @@ def caesar(start_text, cipher_direction, shift_amount):
                 new_index = alphabet.index(char) + 26 - shift_amount
                 new_char = alphabet[new_index]
                 end_text += new_char
-    print(f"The {cipher_direction}d text is {end_text}")
+    print(f"Here's the {cipher_direction}d result: {end_text}")
 
 # Import and print logo from caesar_cipher_Art.py when the program starts
 print(logo)
