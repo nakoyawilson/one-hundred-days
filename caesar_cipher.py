@@ -19,17 +19,17 @@ def encrypt(plain_text, shift_amount):
     print(cipher_text)
 
 def decrypt(cipher_text, shift_amount):
-    decoded_text = ""
+    plain_text = ""
     for char in cipher_text:
         if alphabet.index(char) - shift >= 0:
             new_index = alphabet.index(char) - shift_amount
             new_char = alphabet[new_index]
-            decoded_text += new_char
+            plain_text += new_char
         else:
             new_index = alphabet.index(char) + 26 - shift_amount
             new_char = alphabet[new_index]
-            decoded_text += new_char
-    print(decoded_text)
+            plain_text += new_char
+    print(plain_text)
 
 if direction == "encode":
     encrypt(plain_text=text, shift_amount=shift)
