@@ -1,5 +1,6 @@
 from replit import clear
 
+# Ask for name and bid until there are no more bidders
 continue_auction = "yes"
 auction_bids = {}
 while continue_auction == "yes":
@@ -9,6 +10,7 @@ while continue_auction == "yes":
   auction_bids[name] = bid
   clear()
 
+# Determine highest bid
 for bidder in auction_bids:
   winning_bid = 0
   winner = ""
