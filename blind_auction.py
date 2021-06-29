@@ -1,4 +1,8 @@
 from replit import clear
+from blind_auction_art import logo
+
+# Print logo
+print(logo)
 
 # Ask for name and bid until there are no more bidders
 continue_auction = "yes"
