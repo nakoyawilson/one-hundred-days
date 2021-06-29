@@ -9,4 +9,13 @@ while continue_auction == "yes":
   auction_bids[name] = bid
   clear()
 
-auction_result = f"The winner is {name} with a bid of ${bid:.2f}"
+for bidder in auction_bids:
+  winning_bid = 0
+  winner = ""
+  auction_bid = auction_bids[bidder]
+  if auction_bid > winning_bid:
+    winning_bid = auction_bid
+    winner = bidder
+
+auction_results = f"The winner is {winner} with a bid of ${winning_bid:.2f}"
+print(auction_results)
