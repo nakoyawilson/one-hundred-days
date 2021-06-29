@@ -6,7 +6,7 @@ auction_bids = {}
 while continue_auction == "yes":
   name = (input("What is your name? "))
   bid = float(input("What is your bid? $"))
-  continue_auction = input("Are there any other bidders? Type 'yes' or 'no'.\n")
+  continue_auction = input("Are there any other bidders? Type 'yes' or 'no'.\n").lower()
   auction_bids[name] = bid
   clear()
 
