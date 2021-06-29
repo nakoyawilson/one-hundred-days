@@ -11,13 +11,12 @@ while continue_auction == "yes":
   clear()
 
 # Determine highest bid
+winning_bid = 0
+winner = ""
 for bidder in auction_bids:
-  winning_bid = 0
-  winner = ""
   auction_bid = auction_bids[bidder]
   if auction_bid > winning_bid:
     winning_bid = auction_bid
     winner = bidder
-
 auction_results = f"The winner is {winner} with a bid of ${winning_bid:.2f}"
 print(auction_results)
