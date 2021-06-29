@@ -1,6 +1,7 @@
 import random
 import hangman_words
 import hangman_art
+from replit import clear
 
 # Randomly choose a word from the word_list and assign it to a variable called chosen_word.
 chosen_word = random.choice(hangman_words.word_list)
@@ -26,6 +27,9 @@ while "_" in display:
 
     # Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
     guess = input("Guess a letter: ").lower()
+
+    # Use the clear() function from replit to clear the output between guess
+    clear()
 
     # If the user has entered a letter they've already guessed, print the letter and let them know.
     if guess not in user_guess:
