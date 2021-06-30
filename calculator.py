@@ -32,7 +32,7 @@ def calculator():
     answer = operations[operation_symbol](num1, num2)
     print(f"{num1} {operation_symbol} {num2} = {answer}")
 
-    # Continue program until user types 'n'
+    # Continue program until user types 'n' or '0'
     continue_program = "y"
     while continue_program == "y":
         continue_program = input(f"Type 'y' to continue calculating with {answer}, type 'n' to start a new calculation, or '0' to exit: ")
@@ -43,7 +43,7 @@ def calculator():
             answer = operations[operation_symbol](num1, num2)
             print(f"{num1} {operation_symbol} {num2} = {answer}")
         elif continue_program == "n":
-            continue_program = "no"
+            continue_program = "n"
             calculator()
         else:
             continue_program = "0"
