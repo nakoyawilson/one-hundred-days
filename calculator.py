@@ -1,4 +1,6 @@
 from calculator_art import logo
+from replit import clear
+
 # Add
 def add(n1, n2):
   return n1 + n2
@@ -44,6 +46,7 @@ def calculator():
             print(f"{num1} {operation_symbol} {num2} = {answer}")
         elif continue_program == "n":
             continue_program = "n"
+            clear()
             calculator()
         else:
             continue_program = "0"
