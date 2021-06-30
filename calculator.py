@@ -33,10 +33,10 @@ def calculator():
     print(f"{num1} {operation_symbol} {num2} = {answer}")
 
     # Continue program until user types 'n' or '0'
-    continue_program = "y"
-    while continue_program == "y":
-        continue_program = input(f"Type 'y' to continue calculating with {answer}, type 'n' to start a new calculation, or '0' to exit: ")
-        if continue_program == "y":
+    continue_program = "c"
+    while continue_program == "c":
+        continue_program = input(f"Type 'c' to continue calculating with {answer}, type 'n' to start a new calculation, or '0' to exit: ")
+        if continue_program == "c":
             num1 = answer
             operation_symbol = input("Pick an operation: ")
             num2 = float(input("What's the next number?: "))
