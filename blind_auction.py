@@ -5,8 +5,8 @@ from blind_auction_art import logo
 def find_winning_bid(auction_dictionary):
   winning_bid = 0
   winner = ""
-  for bidder in auction_bids:
-    auction_bid = auction_bids[bidder]
+  for bidder in auction_dictionary:
+    auction_bid = auction_dictionary[bidder]
     if auction_bid > winning_bid:
       winning_bid = auction_bid
       winner = bidder
