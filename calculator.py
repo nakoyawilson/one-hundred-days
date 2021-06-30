@@ -35,15 +35,17 @@ def calculator():
     # Continue program until user types 'n'
     continue_program = "y"
     while continue_program == "y":
-        continue_program = input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ")
+        continue_program = input(f"Type 'y' to continue calculating with {answer}, type 'n' to start a new calculation, or '0' to exit: ")
         if continue_program == "y":
             num1 = answer
             operation_symbol = input("Pick an operation: ")
             num2 = float(input("What's the next number?: "))
             answer = operations[operation_symbol](num1, num2)
             print(f"{num1} {operation_symbol} {num2} = {answer}")
-        else:
+        elif continue_program == "n":
             continue_program = "no"
             calculator()
+        else:
+            continue_program = "0"
 
 calculator()
