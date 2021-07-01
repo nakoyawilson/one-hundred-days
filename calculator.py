@@ -40,6 +40,14 @@ def calculator():
     # Continue program until user types 'n' or '0'
     continue_program = "c"
     while continue_program == "c":
+        if operations[operation_symbol] == divide and num2 == 0:
+            continue_program = input("Type 'n' to start a new calculation, or '0' to exit: ")
+            if continue_program == "n":
+                continue_program = "n"
+                clear()
+                calculator()
+            else:
+                continue_program = "0"
         continue_program = input(f"Type 'c' to continue calculating with {answer}, type 'n' to start a new calculation, or '0' to exit: ")
         if continue_program == "c":
             num1 = answer
