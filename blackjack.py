@@ -52,7 +52,7 @@ def blackjack():
         another_card = True
         while another_card:
             # Ask the user if they want to get another card
-            continue_game = input("Type 'y' to get another card, type 'n' to pass: ")
+            continue_game = input("Type 'y' to get another card, type 'n' to pass: ").lower()
             if continue_game == 'y':
                 deal_card = random.choice(cards)
                 player_cards.append(deal_card)
@@ -87,10 +87,10 @@ def blackjack():
 
 play_blackjack = True
 while play_blackjack:
-    start_game = input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ")
+    start_game = input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ").lower()
     if start_game == "yes":
-        blackjack()
         # clear()
+        blackjack()
     else:
         play_blackjack = False
         print("Thanks for playing!")
