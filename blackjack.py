@@ -32,7 +32,26 @@ def blackjack():
     player_score = sum(player_cards)
     computer_score = sum(computer_cards)
 
+    # If ace is drawn, count it as 11 unless total goes over 21
+    if 11 in player_cards and player_score > 21:
+        ace_index = player_cards.index(11)
+        player_cards[ace_index] = 1
+        player_score = sum(player_cards)
+    if 11 in computer_cards and computer_score > 21:
+        ace_index = computer_cards.index(11)
+        computer_cards[ace_index] = 1
+        computer_score = sum(computer_cards)
+
     # Detect when computer or user has a blackjack
+    player_score = sum(player_cards)
+    computer_score = sum(computer_cards)
+    while computer_score < 17:
+        computer_cards.append(random.choice(cards))
+        computer_score = sum(computer_cards)
+        if 11 in computer_cards and computer_score > 21:
+            ace_index = computer_cards.index(11)
+            computer_cards[ace_index] = 1
+    computer_score = sum(computer_cards)
     if computer_score == 21:
         print(f"Your final hand: {player_cards}, final score: {player_score}")
         print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
@@ -67,16 +86,12 @@ def blackjack():
             else:
                 another_card = False
                 computer_score = sum(computer_cards)
-                while computer_score < 17:
-                    deal_card = random.choice(cards)
-                    computer_cards.append(deal_card)
-                    computer_score = sum(computer_cards)
-                player_score = sum(player_cards)
-                computer_score = sum(computer_cards)
                 print(f"Your final hand: {player_cards}, final score: {player_score}")
                 print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
-                if player_score > computer_score and computer_score < 21 or player_score < 21 and computer_score > 21:
+                if player_score > computer_score and computer_score < 21:
                     return "You win!"
+                elif player_score < 21 and computer_score > 21:
+                    return "Opponent went over. You win!"
                 elif player_score == computer_score:
                     return "It's a draw."
                 else:
