@@ -12,14 +12,27 @@ import random
 # The computer is the dealer.
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-player_cards = []
-dealer_cards = []
+
+def blackjack():
+    """Creates a game of Blackjack"""
+    player_cards = []
+    computer_cards = []
+    # Deal user a starting hand of 2 random card values
+    for card in range(2):
+        deal_card = random.choice(cards)
+        player_cards.append(deal_card)
+    print(player_cards)
+    # Deal computer a starting hand of 2 random card values
+    for card in range(2):
+        deal_card = random.choice(cards)
+        computer_cards.append(deal_card)
+    print(computer_cards)
 
 play_blackjack = True
 while play_blackjack:
     start_game = input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ")
     if start_game == "yes":
-        pass
+        blackjack()
     else:
         play_blackjack = False
         print("Thanks for playing!")
