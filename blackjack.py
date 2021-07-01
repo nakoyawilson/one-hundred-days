@@ -14,3 +14,12 @@ import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 player_cards = []
 dealer_cards = []
+
+play_blackjack = True
+while play_blackjack:
+    start_game = input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ")
+    if start_game == "yes":
+        pass
+    else:
+        play_blackjack = False
+        print("Thanks for playing!")
