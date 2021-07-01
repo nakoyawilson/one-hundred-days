@@ -30,38 +30,59 @@ def blackjack():
     for card in range(2):
         deal_card = random.choice(cards)
         computer_cards.append(deal_card)
-    # Calculate the user's score based on card values
+    # Calculate the user's and computer's score based on card values
     player_score = sum(player_cards)
-    print(f"Your cards: {player_cards}, current score: {player_score}")
-    print(f"Computer's first card: {computer_cards[0]}")
-
-    if computer_score == 21:
-        print("You lose.")
-    elif player_score == 21:
-        print("Blackjack! You win.")
-    elif player_score > computer_score:
-        print("You win!")
-    elif player_score == computer_score:
-        print("It's a draw")
+    computer_score = sum(computer_cards)
+    # Detect when computer or user has a blackjack
     another_card = True
-    while another_card:
-        # Ask the user if they want to get another card
-        continue_game = input("Type 'y' to get another card, type 'n' to pass: ")
-        if continue_game == 'y':
-            deal_card = random.choice(cards)
-            player_cards.append(deal_card)
-            player_score = sum(player_cards)
-            print(f"Your cards: {player_cards}, current score: {player_score}")
-            print(f"Computer's first card: {computer_cards[0]}")
-        else:
-            another_card = False
-            computer_score = sum(computer_cards)
-            while computer_score < 17:
+    if computer_score == 21:
+        another_card = False
+        print(f"Your final hand: {player_cards}, final score: {player_score}")
+        print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+        print("Computer has blackjack. You lose.")
+    elif player_score == 21:
+        another_card = False
+        print(f"Your final hand: {player_cards}, final score: {player_score}")
+        print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+        print("You have blackjack! You win.")
+    else:
+        print(f"Your cards: {player_cards}, current score: {player_score}")
+        print(f"Computer's first card: {computer_cards[0]}")
+        another_card = True
+        while another_card:
+            # Ask the user if they want to get another card
+            continue_game = input("Type 'y' to get another card, type 'n' to pass: ")
+            if continue_game == 'y':
                 deal_card = random.choice(cards)
-                computer_cards.append(deal_card)
+                player_cards.append(deal_card)
+                player_score = sum(player_cards)
+                print(f"Your cards: {player_cards}, current score: {player_score}")
+                print(f"Computer's first card: {computer_cards[0]}")
+                if player_score == 21:
+                    another_card = False
+                    print(f"Your final hand: {player_cards}, final score: {player_score}")
+                    print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+                    print("You have blackjack! You win.")
+                elif player_score > 21:
+                    print("You went over. You lose.")
+                    continue_game = False
+            else:
+                another_card = False
                 computer_score = sum(computer_cards)
-            print(f"Your final hand: {player_cards}, final score: {player_score}")
-            print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+                while computer_score < 17:
+                    deal_card = random.choice(cards)
+                    computer_cards.append(deal_card)
+                    computer_score = sum(computer_cards)
+                player_score = sum(player_cards)
+                computer_score = sum(computer_cards)
+                print(f"Your final hand: {player_cards}, final score: {player_score}")
+                print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+                if player_score > computer_score and computer_score < 21:
+                    print("You win!")
+                elif player_score == computer_score:
+                    print("It's a draw")
+                else:
+                    print("You lose.")
 
 play_blackjack = True
 while play_blackjack:
