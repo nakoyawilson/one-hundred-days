@@ -17,35 +17,30 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def blackjack():
     """Creates a game of Blackjack"""
+
     # Print logo
     print(logo)
     player_cards = []
     computer_cards = []
-    player_score = 0
-    computer_score = 0
-    # Deal user a starting hand of 2 random card values
+
+    # Deal user and computer starting hands of 2 random card values
     for card in range(2):
-        deal_card = random.choice(cards)
-        player_cards.append(deal_card)
-    # Deal computer a starting hand of 2 random card values
-    for card in range(2):
-        deal_card = random.choice(cards)
-        computer_cards.append(deal_card)
+        player_cards.append(random.choice(cards))
+        computer_cards.append(random.choice(cards))
+
     # Calculate the user's and computer's score based on card values
     player_score = sum(player_cards)
     computer_score = sum(computer_cards)
+
     # Detect when computer or user has a blackjack
-    another_card = True
     if computer_score == 21:
-        another_card = False
         print(f"Your final hand: {player_cards}, final score: {player_score}")
         print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
-        print("Computer has blackjack. You lose.")
+        return "Computer has blackjack. You lose."
     elif player_score == 21:
-        another_card = False
         print(f"Your final hand: {player_cards}, final score: {player_score}")
         print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
-        print("You have blackjack! You win.")
+        return "You have blackjack! You win."
     else:
         print(f"Your cards: {player_cards}, current score: {player_score}")
         print(f"Computer's first card: {computer_cards[0]}")
@@ -57,16 +52,18 @@ def blackjack():
                 deal_card = random.choice(cards)
                 player_cards.append(deal_card)
                 player_score = sum(player_cards)
+                if deal_card == 11 and player_score > 21:
+                    ace_index = player_cards.index(11)
+                    player_cards[ace_index] = 1
+                    player_score = sum(player_cards)
                 print(f"Your cards: {player_cards}, current score: {player_score}")
                 print(f"Computer's first card: {computer_cards[0]}")
                 if player_score == 21:
-                    another_card = False
                     print(f"Your final hand: {player_cards}, final score: {player_score}")
                     print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
-                    print("You have blackjack! You win.")
+                    return "You win!"
                 elif player_score > 21:
-                    print("You went over. You lose.")
-                    continue_game = False
+                    return "You went over. You lose."
             else:
                 another_card = False
                 computer_score = sum(computer_cards)
@@ -78,19 +75,19 @@ def blackjack():
                 computer_score = sum(computer_cards)
                 print(f"Your final hand: {player_cards}, final score: {player_score}")
                 print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
-                if player_score > computer_score and computer_score < 21:
-                    print("You win!")
+                if player_score > computer_score and computer_score < 21 or player_score < 21 and computer_score > 21:
+                    return "You win!"
                 elif player_score == computer_score:
-                    print("It's a draw")
+                    return "It's a draw."
                 else:
-                    print("You lose.")
+                    return "You lose."
 
 play_blackjack = True
 while play_blackjack:
-    start_game = input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ").lower()
-    if start_game == "yes":
-        # clear()
-        blackjack()
+    start_game = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()
+    if start_game == "y":
+        #clear()
+        print(blackjack())
     else:
         play_blackjack = False
         print("Thanks for playing!")
