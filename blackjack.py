@@ -17,16 +17,36 @@ def blackjack():
     """Creates a game of Blackjack"""
     player_cards = []
     computer_cards = []
+    player_score = 0
+    computer_score = 0
     # Deal user a starting hand of 2 random card values
     for card in range(2):
         deal_card = random.choice(cards)
         player_cards.append(deal_card)
-    print(player_cards)
     # Deal computer a starting hand of 2 random card values
     for card in range(2):
         deal_card = random.choice(cards)
         computer_cards.append(deal_card)
-    print(computer_cards)
+    # Calculate the user's and computer's score based on card values
+    player_score = sum(player_cards)
+    computer_score = sum(computer_cards)
+    print(f"Your cards: {player_cards}, current score: {player_score}")
+    print(f"Computer's first card: {computer_cards[0]}")
+    another_card = True
+    while another_card:
+        # Ask the user if they want to get another card
+        continue_game = input("Type 'y' to get another card, type 'n' to pass: ")
+        if continue_game == 'y':
+            deal_card = random.choice(cards)
+            player_cards.append(deal_card)
+            player_score = sum(player_cards)
+            print(f"Your cards: {player_cards}, current score: {player_score}")
+            print(f"Computer's first card: {computer_cards[0]}")
+        else:
+            another_card = False
+            computer_score = sum(computer_cards)
+            print(f"Your final hand: {player_cards}, final score: {player_score}")
+            print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
 
 play_blackjack = True
 while play_blackjack:
