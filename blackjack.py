@@ -45,13 +45,7 @@ def blackjack():
     # Detect when computer or user has a blackjack
     player_score = sum(player_cards)
     computer_score = sum(computer_cards)
-    while computer_score < 17:
-        computer_cards.append(random.choice(cards))
-        computer_score = sum(computer_cards)
-        if 11 in computer_cards and computer_score > 21:
-            ace_index = computer_cards.index(11)
-            computer_cards[ace_index] = 1
-    computer_score = sum(computer_cards)
+
     if computer_score == 21:
         print(f"Your final hand: {player_cards}, final score: {player_score}")
         print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
@@ -63,6 +57,13 @@ def blackjack():
     else:
         print(f"Your cards: {player_cards}, current score: {player_score}")
         print(f"Computer's first card: {computer_cards[0]}")
+        while computer_score < 17:
+            computer_cards.append(random.choice(cards))
+            computer_score = sum(computer_cards)
+            if 11 in computer_cards and computer_score > 21:
+                ace_index = computer_cards.index(11)
+                computer_cards[ace_index] = 1
+        computer_score = sum(computer_cards)
         another_card = True
         while another_card:
             # Ask the user if they want to get another card
