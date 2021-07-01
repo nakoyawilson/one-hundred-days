@@ -1,4 +1,5 @@
 import random
+from blackjack_art import logo
 
 # Our Blackjack House Rules:
 # The deck is unlimited in size.
@@ -15,6 +16,8 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def blackjack():
     """Creates a game of Blackjack"""
+    # Print logo
+    print(logo)
     player_cards = []
     computer_cards = []
     player_score = 0
@@ -27,11 +30,19 @@ def blackjack():
     for card in range(2):
         deal_card = random.choice(cards)
         computer_cards.append(deal_card)
-    # Calculate the user's and computer's score based on card values
+    # Calculate the user's score based on card values
     player_score = sum(player_cards)
-    computer_score = sum(computer_cards)
     print(f"Your cards: {player_cards}, current score: {player_score}")
     print(f"Computer's first card: {computer_cards[0]}")
+
+    if computer_score == 21:
+        print("You lose.")
+    elif player_score == 21:
+        print("Blackjack! You win.")
+    elif player_score > computer_score:
+        print("You win!")
+    elif player_score == computer_score:
+        print("It's a draw")
     another_card = True
     while another_card:
         # Ask the user if they want to get another card
@@ -45,6 +56,10 @@ def blackjack():
         else:
             another_card = False
             computer_score = sum(computer_cards)
+            while computer_score < 17:
+                deal_card = random.choice(cards)
+                computer_cards.append(deal_card)
+                computer_score = sum(computer_cards)
             print(f"Your final hand: {player_cards}, final score: {player_score}")
             print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
 
@@ -53,6 +68,7 @@ while play_blackjack:
     start_game = input("Do you want to play a game of Blackjack? Type 'yes' or 'no': ")
     if start_game == "yes":
         blackjack()
+        # clear()
     else:
         play_blackjack = False
         print("Thanks for playing!")
