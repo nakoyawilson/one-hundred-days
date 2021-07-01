@@ -1,5 +1,5 @@
 from calculator_art import logo
-from replit import clear
+#from replit import clear
 
 # Add
 def add(n1, n2):
@@ -44,22 +44,23 @@ def calculator():
             continue_program = input("Type 'n' to start a new calculation, or '0' to exit: ")
             if continue_program == "n":
                 continue_program = "n"
-                clear()
+                #clear()
                 calculator()
             else:
                 continue_program = "0"
-        continue_program = input(f"Type 'c' to continue calculating with {answer}, type 'n' to start a new calculation, or '0' to exit: ")
-        if continue_program == "c":
-            num1 = answer
-            operation_symbol = input("Pick an operation: ")
-            num2 = float(input("What's the next number?: "))
-            answer = operations[operation_symbol](num1, num2)
-            print(f"{num1} {operation_symbol} {num2} = {answer}")
-        elif continue_program == "n":
-            continue_program = "n"
-            clear()
-            calculator()
         else:
-            continue_program = "0"
+            continue_program = input(f"Type 'c' to continue calculating with {answer}, type 'n' to start a new calculation, or '0' to exit: ")
+            if continue_program == "c":
+                num1 = answer
+                operation_symbol = input("Pick an operation: ")
+                num2 = float(input("What's the next number?: "))
+                answer = operations[operation_symbol](num1, num2)
+                print(f"{num1} {operation_symbol} {num2} = {answer}")
+            elif continue_program == "n":
+                continue_program = "n"
+                #clear()
+                calculator()
+            else:
+                continue_program = "0"
 
 calculator()
