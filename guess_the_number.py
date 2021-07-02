@@ -26,9 +26,9 @@ def guess_the_number(difficulty_mode):
         elif num_of_tries == 0:
             print(f"Sorry. You've run out of guesses. The number I was thinking of was {number}")
         elif user_guess > number:
-            print("Too high.")
+            print("Too high.\nGuess again.")
         else:
-            print("Too low.")
+            print("Too low.\nGuess again.")
 
 # Ask player if they want to play, call guess_the_number function if yes
 num1 = 1
