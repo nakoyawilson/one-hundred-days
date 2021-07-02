@@ -10,3 +10,42 @@
 
 import random
 #from replit import clear
+
+# Create function for guess the number game
+def guess_the_number(difficulty_mode):
+    number = random.randint(num1, num2)
+    num_of_tries = difficulty_mode
+    while num_of_tries > 0:
+        print(f"You have {num_of_tries} attempts remaining to guess the number.")
+        user_guess = int(input("Make a guess: "))
+        num_of_tries -= 1
+        if user_guess == number:
+            print(f"You got it! The answer was {number}!")
+            break
+        elif num_of_tries == 0:
+            print(f"Sorry. The number I was thinking of was {number}")
+        elif user_guess > number:
+            print("Too high.")
+        else:
+            print("Too low.")
+
+# Ask player if they want to play, call guess_the_number function if yes
+num1 = 1
+num2 = 100
+print(f"Welcome to the Number Guessing Game!")
+start_game = "y"
+while start_game == "y":
+    start_game = input("Do you want to play? Type 'y' or 'n': ").lower()
+    if start_game == "y":
+        # clear()
+        print(f"I'm thinking of a number between {num1} and {num2}")
+        difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
+        while difficulty not in ["easy", "hard"]:
+            difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
+        if difficulty == "easy":
+            tries = 10
+        else:
+            tries = 5
+        guess_the_number(tries)
+    else:
+        print("Thanks for playing!")
