@@ -24,7 +24,7 @@ def guess_the_number(difficulty_mode):
             print(f"You got it! The answer was {number}!")
             break
         elif num_of_tries == 0:
-            print(f"Sorry. The number I was thinking of was {number}")
+            print(f"Sorry. You've run out of guesses. The number I was thinking of was {number}")
         elif user_guess > number:
             print("Too high.")
         else:
