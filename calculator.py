@@ -18,7 +18,7 @@ def divide(n1, n2):
   try:
     return n1 / n2
   except ZeroDivisionError:
-    return "Invalid input. Cannot divide by zero."
+    return "Error: You tried to divide by zero."
 
 operations = {
   "+": add,
