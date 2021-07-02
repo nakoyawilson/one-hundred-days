@@ -9,3 +9,4 @@
 # Include two different difficulty levels (e.g., 10 guesses in easy mode, only 5 guesses in hard mode).
 
 import random
+#from replit import clear
