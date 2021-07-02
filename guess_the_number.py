@@ -10,6 +10,7 @@
 
 import random
 #from replit import clear
+import guess_the_number_art
 
 # Create function for guess the number game
 def guess_the_number(difficulty_mode):
@@ -32,6 +33,7 @@ def guess_the_number(difficulty_mode):
 # Ask player if they want to play, call guess_the_number function if yes
 num1 = 1
 num2 = 100
+print(guess_the_number_art.logo)
 print(f"Welcome to the Number Guessing Game!")
 start_game = "y"
 while start_game == "y":
