@@ -10,10 +10,12 @@ choice_a = random.choice(data)
 choice_b = random.choice(data)
 if choice_b == choice_a:
     choice_b = random.choice(data)
-print(choice_a)
-print(choice_b)
 
 # Print instructions to player.
+print(f"Compare A: {choice_a['name']}, a {choice_a['description']}, from {choice_a['country']}")
+print(vs)
+print(f"Against B: {choice_b['name']}, a {choice_b['description']}, from {choice_b['country']}")
+answer = input("Who has more followers? Type 'A' or 'B': ")
 
 # Ask who has more followers
 
