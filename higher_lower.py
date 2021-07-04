@@ -14,6 +14,7 @@ def choose_first_entries():
     return choice_a, choice_b
 
 def choose_more_entries(choice_a, choice_b):
+    """Makes choice_b choice_a and chooses new choice_b"""
     choice_a = choice_b
     choice_b = random.choice(data)
     if choice_b == choice_a:
@@ -30,7 +31,6 @@ def assign_answer(choice):
         return "Invalid input"
     return answer
 
-# Compare follower count
 def compare_follower_counts(first_choice, second_choice):
     """Compares follower counts and returns correct answer"""
     if first_choice['follower_count'] > second_choice['follower_count']:
@@ -40,6 +40,7 @@ def compare_follower_counts(first_choice, second_choice):
     return answer
 
 def start_round(first_choice, second_choice):
+    """Starts round of higher lower"""
     # Print instructions for player.
     print(f"Compare A: {first_choice['name']}, a {first_choice['description']}, from {first_choice['country']}")
     print(vs)
@@ -49,6 +50,7 @@ def start_round(first_choice, second_choice):
     return choice
 
 def play_round(choice_a, choice_b):
+    """"Continues round of higher lower"""
     player_choice = start_round(choice_a, choice_b)
     correct_answer = compare_follower_counts(choice_a, choice_b)
     player_answer = assign_answer(player_choice)
@@ -60,13 +62,11 @@ while play_higher_lower == "Y":
     if play_higher_lower == "Y":
         # # Clear screen
         # clear()
-        # Print game logo
         print(logo)
         # Choose two entries from data list: 'A' and 'B'
         choice_a, choice_b = choose_first_entries()
         player_choice, correct_answer, player_answer = play_round(choice_a, choice_b)
-        # Display results. If player is correct, add 1 to score.
-        # Game continues and B becomes A. Choose new B
+        # Display results. If player is correct, add 1 to score and game continues
         score = 0
         while player_answer == correct_answer:
             # # Clear screen
