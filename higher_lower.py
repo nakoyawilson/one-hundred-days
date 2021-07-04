@@ -36,9 +36,15 @@ else:
 print(correct_answer)
 
 # Display results
-
 # If player is correct, add 1 to score
 # Game continues and B becomes A
 # Choose new B
-
 # If player is wrong, game ends
+score = 0
+if player_answer == correct_answer:
+    score += 1
+    print(f"You're right! Current score: {score}.")
+else:
+    print(f"Sorry, that's wrong. Final score: {score}")
+
+
