@@ -6,10 +6,12 @@ import random
 print(logo)
 
 # Choose two entries from data list: 'A' and 'B'
-choice_a = random.choice(data)
-choice_b = random.choice(data)
+def choose_entry():
+    return random.choice(data)
+choice_a = choose_entry()
+choice_b = choose_entry()
 if choice_b == choice_a:
-    choice_b = random.choice(data)
+    choice_b = choose_entry()
 
 # Print instructions for player.
 print(f"Compare A: {choice_a['name']}, a {choice_a['description']}, from {choice_a['country']}")
