@@ -5,7 +5,13 @@ import random
 # Print game logo
 print(logo)
 
-# Choose two entries from data dictionary: 'A' and 'B'
+# Choose two entries from data list: 'A' and 'B'
+choice_a = random.choice(data)
+choice_b = random.choice(data)
+if choice_b == choice_a:
+    choice_b = random.choice(data)
+print(choice_a)
+print(choice_b)
 
 # Print instructions to player.
 
