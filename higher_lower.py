@@ -54,10 +54,10 @@ def play_round(choice_a, choice_b):
     player_answer = assign_answer(player_choice)
     return player_choice, correct_answer, player_answer
 
-play_higher_lower = "y"
-while play_higher_lower == "y":
-    play_higher_lower = input("Do you want to play? Type 'y' or 'n': ").lower()
-    if play_higher_lower == "y":
+play_higher_lower = "Y"
+while play_higher_lower == "Y":
+    play_higher_lower = input("Do you want to play? Type 'Y' or 'N': ").upper()
+    if play_higher_lower == "Y":
         # # Clear screen
         # clear()
         # Print game logo
