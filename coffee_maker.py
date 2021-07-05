@@ -104,7 +104,7 @@ while machine_on:
                     resources["water"] = new_water
                     resources["milk"] = new_milk
                     resources["coffee"] = new_coffee
-                    print(f"Here is your {selection}. Enjoy!")
+                    print(f"Here is your {selection} ☕. Enjoy!")
             else:
                 print(f"Sorry, that's not enough money. Money refunded")
         else:
