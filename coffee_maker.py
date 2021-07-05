@@ -50,6 +50,7 @@ def check_resources(drink_selection, machine_resources):
         return
 
 machine_on = True
+money_in_machine = 0
 while machine_on:
     selection = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if selection == "off":
@@ -58,6 +59,6 @@ while machine_on:
         print(f"Water: {resources['water']}ml")
         print(f"Milk: {resources['milk']}ml")
         print(f"Coffee: {resources['coffee']}g")
-        print(f"Money: $")
+        print(f"Money: $ ${money_in_machine:.2f}")
     elif selection == "espresso" or selection == "latte" or selection == "cappuccino":
         resources_sufficient = check_resources(selection, resources)
