@@ -60,8 +60,8 @@ while machine_on:
         print(f"Coffee: {resources['coffee']}g")
         print(f"Money: $")
     elif selection == "espresso":
-        resources_sufficient =check_resources(selection, resources)
+        resources_sufficient = check_resources(selection, resources)
     elif selection == "latte":
-        resources_sufficient =check_resources(selection, resources)
+        resources_sufficient = check_resources(selection, resources)
     elif selection == "cappuccino":
-        resources_sufficient =check_resources(selection, resources)
+        resources_sufficient = check_resources(selection, resources)
