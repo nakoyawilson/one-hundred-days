@@ -32,7 +32,7 @@ resources = {
 
 machine_on = True
 while machine_on:
-    selection = input("What would you like? (espresso/latte/cappuccino): ")
+    selection = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if selection == "off":
         machine_on = False
     elif selection == "report":
