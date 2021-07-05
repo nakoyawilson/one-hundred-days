@@ -107,3 +107,5 @@ while machine_on:
                     print(f"Here is your {selection}. Enjoy!")
             else:
                 print(f"Sorry, that's not enough money. Money refunded")
+        else:
+            print(resources_sufficient)
