@@ -59,9 +59,5 @@ while machine_on:
         print(f"Milk: {resources['milk']}ml")
         print(f"Coffee: {resources['coffee']}g")
         print(f"Money: $")
-    elif selection == "espresso":
-        resources_sufficient = check_resources(selection, resources)
-    elif selection == "latte":
-        resources_sufficient = check_resources(selection, resources)
-    elif selection == "cappuccino":
+    elif selection == "espresso" or selection == "latte" or selection == "cappuccino":
         resources_sufficient = check_resources(selection, resources)
