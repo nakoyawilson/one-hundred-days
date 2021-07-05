@@ -38,14 +38,17 @@ def check_resources(drink_selection, machine_resources):
     machine_milk = machine_resources.get("milk", 0)
     machine_coffee = machine_resources.get("coffee", 0)
     if machine_water < water_needed:
-        return "Sorry, there is not enough water."
+        print("Sorry, there is not enough water.")
+        return False
     elif machine_milk < milk_needed:
         if drink_selection == "espresso":
             pass
         else:
-            return "Sorry, there is not enough milk."
+            print("Sorry, there is not enough milk.")
+            return False
     elif machine_coffee < coffee_needed:
-        return "Sorry, there is not enough coffee."
+        print("Sorry, there is not enough coffee.")
+        return False
     else:
         return True
 
@@ -107,5 +110,3 @@ while machine_on:
                     print(f"Here is your {selection} ☕. Enjoy!")
             else:
                 print(f"Sorry, that's not enough money. Money refunded")
-        else:
-            print(resources_sufficient)
