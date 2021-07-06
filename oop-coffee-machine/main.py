@@ -15,8 +15,8 @@ while machine_on:
     if user_selection == "off":
         machine_on = False
     elif user_selection == "report":
-        print(the_coffee_maker.report())
-        print(the_money_machine.report())
+        the_coffee_maker.report()
+        the_money_machine.report()
     else:
         item = the_menu.find_drink(user_selection)
         sufficient_resources = the_coffee_maker.is_resource_sufficient(item)
