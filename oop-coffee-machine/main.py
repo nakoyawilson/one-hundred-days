@@ -21,6 +21,7 @@ while machine_on:
         item = the_menu.find_drink(user_selection)
         sufficient_resources = the_coffee_maker.is_resource_sufficient(item)
         if sufficient_resources:
-            print(sufficient_resources)
+            drink_cost = item.cost
+            payment = the_money_machine.make_payment(drink_cost)
         else:
             print("Sorry, there is not enough resources.")
