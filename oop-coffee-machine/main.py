@@ -20,4 +20,7 @@ while machine_on:
     else:
         item = the_menu.find_drink(user_selection)
         sufficient_resources = the_coffee_maker.is_resource_sufficient(item)
-        print(sufficient_resources)
+        if sufficient_resources:
+            print(sufficient_resources)
+        else:
+            print("Sorry, there is not enough resources.")
