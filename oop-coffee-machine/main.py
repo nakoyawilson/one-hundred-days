@@ -17,7 +17,7 @@ while machine_on:
     elif user_selection == "report":
         the_coffee_maker.report()
         the_money_machine.report()
-    else:
+    elif user_selection in menu_items:
         item = the_menu.find_drink(user_selection)
         sufficient_resources = the_coffee_maker.is_resource_sufficient(item)
         if sufficient_resources:
