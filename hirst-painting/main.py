@@ -26,6 +26,12 @@ colour_list = [(251, 241, 246), (245, 252, 249), (243, 235, 74), (211, 158, 93),
 # Create instance of Turtle
 paint_brush = turtle.Turtle()
 
+# Change paint_brush speed
+paint_brush.speed("fastest")
+
+# Hide turtle
+paint_brush.hideturtle()
+
 def create_row():
     for step in range(10):
         paint_brush.dot(20, random.choice(colour_list))
