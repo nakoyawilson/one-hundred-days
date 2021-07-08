@@ -11,8 +11,26 @@
 #     colours.append(colour)
 # print(colours)
 
-# # Remove white from list
-# colours.pop(0)
-# print(colours)
+import random
+import turtle
 
-colour_list = [(115, 160, 192), (134, 46, 112), (242, 243, 246), (103, 34, 79), (200, 121, 179), (163, 62, 43), (18, 25, 48), (122, 121, 127), (244, 238, 242)]
+# Change colormode so that rgb colours can be used
+turtle.colormode(255)
+
+colour_list = [(245, 245, 245), (115, 160, 192), (134, 46, 112), (242, 243, 246), (103, 34, 79), (200, 121, 179),
+               (163, 62, 43), (18, 25, 48), (122, 121, 127), (244, 238, 242)]
+
+# Create instance of Turtle
+paint_brush = turtle.Turtle()
+for step in range(10):
+    paint_brush.dot(20, random.choice(colour_list))
+    paint_brush.penup()
+    paint_brush.forward(50)
+
+
+
+
+
+# Create instance of Screen
+screen = turtle.Screen()
+screen.exitonclick()
