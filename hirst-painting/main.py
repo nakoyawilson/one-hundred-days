@@ -41,10 +41,9 @@ def create_row():
 paint_brush.penup()
 y_coordinate = -250
 while y_coordinate < 250:
-    paint_brush.goto(-250, y_coordinate)
+    paint_brush.setposition(-250, y_coordinate)
     create_row()
     y_coordinate += 50
-    paint_brush.setposition(0, y_coordinate)
 
 # Create instance of Screen
 screen = turtle.Screen()
