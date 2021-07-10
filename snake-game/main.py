@@ -9,7 +9,6 @@ screen.title("Python Snake Game")
 screen.tracer(0)
 
 snake = Snake()
-# snake.create_snake()
 
 game_is_on = True
 while game_is_on:
