@@ -4,6 +4,7 @@ class Snake:
 
     def __init__(self):
         self.snake_segments = []
+        self.create_snake()
 
     def create_snake(self):
         starting_x = 0
