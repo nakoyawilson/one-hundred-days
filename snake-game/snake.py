@@ -33,7 +33,6 @@ class Snake:
     def extend(self):
         self.add_segment(self.snake_segments[-1].position())
 
-
     def move(self):
         for segment in range(len(self.snake_segments) - 1, 0, -1):
             new_x = self.snake_segments[segment - 1].xcor()
