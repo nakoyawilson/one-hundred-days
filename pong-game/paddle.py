@@ -15,7 +15,6 @@ class Paddle:
         paddle.color("white")
         paddle.shapesize(stretch_len=5, stretch_wid=1)
         paddle.penup()
-        # paddle.speed("fastest")
         paddle.setheading(UP)
         paddle.goto(starting_x, starting_y)
         return paddle
