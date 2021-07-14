@@ -11,19 +11,33 @@ class CarManager(Turtle):
 
     def __init__(self):
         super().__init__()
-        self.car_speed = 0.1
+        self.car_list = []
+        self.create_car()
+        self.create_car()
+        self.create_car()
 
     def create_car(self):
+        starting_y = random.randrange(-240, 280, 20)
         self.shape("square")
         self.shapesize(stretch_wid=1, stretch_len=2)
         self.penup()
         self.color(random.choice(COLORS))
         self.setheading(180)
-        starting_y = random.randrange(-260, 260, 20)
         self.goto(STARTING_X, starting_y)
+
+    def add_car(self):
+        self.create_car()
 
     def move(self):
         self.forward(STARTING_MOVE_DISTANCE)
 
+
+
+class Speed(Turtle):
+    def __init__(self):
+        super().__init__()
+        self.hideturtle()
+        self.car_speed = 0.1
+
     def change_speed(self):
-        self.car_speed *= 0.9
+        self.car_speed *= .9
