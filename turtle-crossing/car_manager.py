@@ -32,7 +32,6 @@ class CarManager(Turtle):
         self.forward(STARTING_MOVE_DISTANCE)
 
 
-
 class Speed(Turtle):
     def __init__(self):
         super().__init__()

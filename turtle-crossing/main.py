@@ -23,9 +23,7 @@ while game_is_on:
     screen.update()
     scoreboard.update_level()
 
-    for i in range(1_000):
-        if i == 999:
-            car_manager.append(CarManager())
+    car_manager.append(CarManager())
 
     for car in car_manager:
         car.move()
