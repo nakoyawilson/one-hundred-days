@@ -10,8 +10,7 @@ class Scoreboard(Turtle):
         super().__init__()
         self.score = 0
         with open("data.txt") as file:
-            high_score = file.read()
-        self.high_score = int(high_score)
+            self.high_score = int(file.read())
         self.hideturtle()
         self.penup()
         self.color("white")
