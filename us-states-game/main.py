@@ -15,10 +15,9 @@ states_list = states_data.state.to_list()
 
 game_is_on = True
 correct_guesses = []
-
 while game_is_on:
     score = len(correct_guesses)
-    answer_state = screen.textinput(title=f"{score}/50 States Correct", prompt="What's another state name?").title()
+    answer_state = screen.textinput(title=f"{score}/50 States Correct", prompt="Name a state:").title()
     if answer_state in states_list:
         if answer_state in correct_guesses:
             print("Already guessed")
