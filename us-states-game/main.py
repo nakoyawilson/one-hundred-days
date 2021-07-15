@@ -15,11 +15,13 @@ states_list = states_data.state.to_list()
 
 game_is_on = True
 correct_guesses = []
+
 while game_is_on:
-    answer_state = screen.textinput(title="Guess the State", prompt="What's another state name?").title()
+    score = len(correct_guesses)
+    answer_state = screen.textinput(title=f"{score}/50 States Correct", prompt="What's another state name?").title()
     if answer_state in states_list:
         if answer_state in correct_guesses:
-            pass
+            print("Already guessed")
         else:
             state = states_data[states_data.state == answer_state]
             x_coordinate = int(state.x.to_string(index=False))
@@ -27,9 +29,7 @@ while game_is_on:
             answer.goto(x_coordinate, y_coordinate)
             answer.write(f"{answer_state}", align="center", font=("Menlo", 10, "normal"))
             correct_guesses.append(answer_state)
-    else:
+    if score == 50
         game_is_on = False
-score = len(correct_guesses)
-print(score)
 
 screen.exitonclick()
