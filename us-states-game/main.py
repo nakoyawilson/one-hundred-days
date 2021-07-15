@@ -28,7 +28,6 @@ while game_is_on:
             answer.goto(x_coordinate, y_coordinate)
             answer.write(f"{answer_state}", align="center", font=("Menlo", 10, "normal"))
             correct_guesses.append(answer_state)
-    print(score)
     if score == 49:
         answer.goto(0, 0)
         answer.write("Congratulations! You named all 50 states", align="center", font=("Menlo", 20, "normal"))
