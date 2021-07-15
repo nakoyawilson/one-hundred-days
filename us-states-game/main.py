@@ -23,9 +23,7 @@ while game_is_on:
             print("Already guessed")
         else:
             state = states_data[states_data.state == answer_state]
-            x_coordinate = int(state.x.to_string(index=False))
-            y_coordinate = int(state.y.to_string(index=False))
-            answer.goto(x_coordinate, y_coordinate)
+            answer.goto(int(state.x), int(state.y))
             answer.write(f"{answer_state}", align="center", font=("Menlo", 10, "normal"))
             correct_guesses.append(answer_state)
     score = len(correct_guesses)
