@@ -18,9 +18,17 @@ correct_guesses = []
 score = 0
 while game_is_on:
     answer_state = screen.textinput(title=f"{score}/50 States Correct", prompt="Name a state:").title()
+    if answer_state == "Exit":
+        to_learn = []
+        for state in states_list:
+            if state not in correct_guesses:
+                to_learn.append(state)
+        new_data = pandas.DataFrame(to_learn, columns=["state"])
+        new_data.to_csv("states_to_learn.csv")
+        break
     if answer_state in states_list:
         if answer_state in correct_guesses:
-            print("Already guessed")
+            pass
         else:
             state = states_data[states_data.state == answer_state]
             answer.goto(int(state.x), int(state.y))
