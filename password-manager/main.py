@@ -7,7 +7,6 @@ def save():
     with open("data.txt", "a") as data:
         data.write(f"{website_entry.get()} | {username_entry.get()} | {password_entry.get()}\n")
     website_entry.delete(0, "end")
-    username_entry.delete(0, "end")
     password_entry.delete(0, "end")
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -32,7 +31,7 @@ username_label.grid(column=0, row=2)
 
 username_entry = Entry(width=35)
 username_entry.grid(column=1, row=2, columnspan=2)
-username_entry.insert(0, "example@example.com")
+username_entry.insert(0, "example_email@examplewebsite.com")
 
 password_label = Label(text="Password:")
 password_label.grid(column=0, row=3)
