@@ -1,13 +1,25 @@
 from tkinter import *
+from tkinter import messagebox
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    with open("data.txt", "a") as data:
-        data.write(f"{website_entry.get()} | {username_entry.get()} | {password_entry.get()}\n")
-    website_entry.delete(0, "end")
-    password_entry.delete(0, "end")
+    website = website_entry.get()
+    username = username_entry.get()
+    password = password_entry.get()
+
+    if len(website) == 0 or len(username) == 0 or len(password) == 0:
+        messagebox.showwarning(title="Oops", message="Please don't leave any fields empty!")
+
+    else:
+        is_ok = messagebox.askokcancel(title=website,
+                               message=f"These are the details entered:\nUsername: {username}\nPassword: {password}\nIs it ok to save?")
+        if is_ok:
+            with open("data.txt", "a") as data:
+                data.write(f"{website} | {username} | {password}\n")
+            website_entry.delete(0, "end")
+            password_entry.delete(0, "end")
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -31,7 +43,7 @@ username_label.grid(column=0, row=2)
 
 username_entry = Entry(width=35)
 username_entry.grid(column=1, row=2, columnspan=2)
-username_entry.insert(0, "example_email@examplewebsite.com")
+username_entry.insert(0, "example_email@website.com")
 
 password_label = Label(text="Password:")
 password_label.grid(column=0, row=3)
