@@ -25,7 +25,7 @@ def generate_password():
     random.shuffle(password_characters)
     randomised_password = "".join(password_characters)
 
-    password_entry.insert(0, f"{randomised_password}")
+    password_entry.insert(0, randomised_password)
 
     # Copy password to clipboard
     pyperclip.copy(randomised_password)
