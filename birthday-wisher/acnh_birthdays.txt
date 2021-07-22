@@ -1,5 +1,4 @@
 1 1: Ankha
-1 1: Ankha
 1 2: Shrunk
 1 2: Poncho
 1 3: Joey
