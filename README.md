@@ -29,4 +29,7 @@ Projects for the Udemy Course: 100 Days of Code - The Complete Python Pro Bootca
 26. NATO-alphabet
 27. miles-to-km
 28. pomodoro
-29. password-manager
+29. password-manager Part 1
+30. password-manager Part 2
+31. flash-card-project
+32. birthday-wisher
