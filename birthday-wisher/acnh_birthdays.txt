@@ -143,7 +143,7 @@
 5 3: Sylvia
 5 4: Deirdre
 5 5: Paolo
-5 5: DaisyMae
+5 5: Daisy Mae
 5 6: Tank
 5 7: Ozzie
 5 8: Curlos
@@ -172,7 +172,7 @@
 5 28: Renée
 5 29: Purrl
 5 30: Hamlet
-5 30: TomNook
+5 30: Tom Nook
 5 31: Marcie
 6 1: Keaton
 6 2: Lucy
@@ -211,7 +211,7 @@
 6 30: Broccolo
 6 30: Weber
 7 1: Curt
-7 2: AgentS
+7 2: Agent S.
 7 3: Blaire
 7 4: Apollo
 7 5: Samson
@@ -236,7 +236,7 @@
 7 21: Prince
 7 22: Chow
 7 23: Elvis
-7 24: OHare
+7 24: O'Hare
 7 24: Rex
 7 25: Nat
 7 25: Peck
@@ -248,7 +248,7 @@
 7 30: Frank
 7 31: Grizzly
 7 31: Julia
-8 1: KidCat
+8 1: Kid Cat
 8 2: Vladimir
 8 2: Harvey
 8 3: Benjamin
@@ -275,9 +275,9 @@
 8 19: Alice
 8 19: Tybalt
 8 20: Lopez
-8 21: WartJr
+8 21: Wart Jr.
 8 22: Rolf
-8 23: KKSlider
+8 23: K.K. Slider
 8 23: Nana
 8 24: Jacob
 8 24: Nan
@@ -329,7 +329,7 @@
 10 1: Raymond
 10 2: Diva
 10 2: Orville
-10 3: BigTop
+10 3: Big Top
 10 4: Goose
 10 5: Elmer
 10 6: Bitty
