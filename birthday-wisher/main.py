@@ -5,6 +5,7 @@ import smtplib
 
 MY_EMAIL = "example_email@gmail.com"
 MY_PASSWORD = "ExamplePassword123"
+EMAIL_PROVIDER = "smtp.gmail.com"
 
 birthday_data = pandas.read_csv("birthdays.csv")
 
@@ -24,7 +25,7 @@ for row in birthday_data.itertuples(index=False, name="Person"):
         with open(letter_template) as template:
             letter = template.read()
             email_message = letter.replace("[NAME]", recipient_name)
-            with smtplib.SMTP("smtp.gmail.com") as connection:
+            with smtplib.SMTP(EMAIL_PROVIDER) as connection:
                 connection.starttls()
                 connection.login(user=MY_EMAIL, password=MY_PASSWORD)
                 connection.sendmail(from_addr=MY_EMAIL, to_addrs=recipient_email,
