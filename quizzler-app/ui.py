@@ -13,7 +13,7 @@ class QuizInterface:
         self.window.title("Quizzler")
         self.window.config(bg=THEME_COLOR, padx=20, pady=20)
         self.score_text = Label(text="Score: 0", bg=THEME_COLOR, fg="white", font=("Arial", 15))
-        self.score_text.grid(column=1, row=0)
+        self.score_text.grid(column=1, row=0, sticky=E)
         self.canvas = Canvas(width=300, height=250, bg="white", highlightthickness=0)
         self.question_text = self.canvas.create_text(150, 125, width=280, text="Quiz questions here", font=FONT,
                                                      fill=THEME_COLOR)
