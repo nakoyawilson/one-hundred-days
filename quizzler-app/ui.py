@@ -16,7 +16,7 @@ class QuizInterface:
         self.score_text.grid(column=1, row=0, sticky=E)
         self.canvas = Canvas(width=300, height=250, bg="white", highlightthickness=0)
         self.question_text = self.canvas.create_text(150, 125, width=280, text="Quiz questions here", font=FONT,
-                                                     fill=THEME_COLOR)
+                                                     fill=THEME_COLOR, justify="center")
         self.canvas.grid(column=0, row=1, columnspan=2, pady=50)
         true_img = PhotoImage(file="images/true.png")
         self.true_button = Button(image=true_img, highlightthickness=0, command=self.true_selected)
@@ -36,7 +36,7 @@ class QuizInterface:
             self.canvas.itemconfig(self.question_text, text=q_text)
         else:
             self.canvas.itemconfig(self.question_text,
-                                   text=f"You've reached the end of the quiz.\nYou got {self.quiz.score} out of {len(self.quiz.question_list)} questions correct!")
+                                   text=f"You've reached the end of the quiz.\n\nYou got {self.quiz.score} out of {len(self.quiz.question_list)} questions correct!")
             self.true_button.config(state="disabled")
             self.false_button.config(state="disabled")
 
