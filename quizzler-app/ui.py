@@ -35,7 +35,8 @@ class QuizInterface:
             self.score_text.config(text=f"Score: {self.quiz.score}")
             self.canvas.itemconfig(self.question_text, text=q_text)
         else:
-            self.canvas.itemconfig(self.question_text, text="You've reached the end of the quiz.")
+            self.canvas.itemconfig(self.question_text,
+                                   text=f"You've reached the end of the quiz.\nYou got {self.quiz.score} out of {len(self.quiz.question_list)} questions correct!")
             self.true_button.config(state="disabled")
             self.false_button.config(state="disabled")
 
