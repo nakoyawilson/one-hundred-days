@@ -21,7 +21,7 @@ for condition_code in hourly_forecasts:
         client = Client(account_sid, auth_token)
         message = client.messages \
             .create(
-            body="It's going to rain today. Remember to bring an u️mbrella!",
+            body="It's going to rain today. Remember to bring an umbrella!",
             from_= FROM_PHONE_NUMBER,
             to= TO_PHONE_NUMBER
         )
