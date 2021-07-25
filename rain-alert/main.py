@@ -3,11 +3,16 @@ import requests
 parameters = {
     "lat": 10.707250,
     "lon": -61.554400,
+    "exclude": "current,minutely,daily",
     "appid": API_KEY,
 }
 
 response = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=parameters)
 response.raise_for_status()
-# print(response.status_code)
 weather_data = response.json()
-print(weather_data)
+hourly_forecasts = [weather_data["hourly"][index]["weather"][0]["id"] for index, data_point in
+                    enumerate(weather_data["hourly"]) if index < 12]
+for weather_id in hourly_forecasts:
+    if weather_id < 700:
+        print("Bring an Umbrella")
+        break
