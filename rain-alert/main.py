@@ -12,7 +12,7 @@ response.raise_for_status()
 weather_data = response.json()
 hourly_forecasts = [weather_data["hourly"][index]["weather"][0]["id"] for index, data_point in
                     enumerate(weather_data["hourly"]) if index < 12]
-for weather_id in hourly_forecasts:
-    if weather_id < 700:
+for condition_code in hourly_forecasts:
+    if condition_code < 700:
         print("Bring an Umbrella")
         break
