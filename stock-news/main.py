@@ -60,7 +60,8 @@ else:
 yesterday = str(yesterday.date())
 day_before = str(day_before.date())
 
-# When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
+# When STOCK price increases/decreases by 5% between yesterday and the day before yesterday,
+# then get the first 3 news pieces for the COMPANY_NAME.
 av_response = requests.get("https://www.alphavantage.co/query", params=alpha_vantage_params)
 av_response.raise_for_status()
 stock_data = av_response.json()
@@ -69,7 +70,6 @@ day_before_price = float(stock_data["Time Series (Daily)"][day_before]["4. close
 price_difference = yesterday_price - day_before_price
 percentage = price_difference / yesterday_price * 100
 if percentage >= 5 or percentage <= -5:
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
     news_response = requests.get("https://newsapi.org/v2/everything", params=news_params)
     news_response.raise_for_status()
     news_data = news_response.json()
