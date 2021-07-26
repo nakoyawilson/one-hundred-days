@@ -5,6 +5,20 @@ from datetime import datetime, timedelta
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
+alpha_vantage_api_key = os.environ["AV_API_KEY"]
+alpha_vantage_params = {
+    "function": "TIME_SERIES_DAILY",
+    "symbol": STOCK,
+    "outputsize": "compact",
+    "apikey": alpha_vantage_api_key,
+}
+
+news_api_key = os.environ["NEWS_API_KEY"]
+news_params = {
+    "apiKey": news_api_key,
+    "q": COMPANY_NAME,
+}
+
 
 def get_yesterday(num_days):
     date_today = datetime.now()
@@ -32,16 +46,7 @@ else:
 yesterday = str(yesterday.date())
 day_before = str(day_before.date())
 
-## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-alpha_vantage_api_key = os.environ["AV_API_KEY"]
-alpha_vantage_params = {
-    "function": "TIME_SERIES_DAILY",
-    "symbol": STOCK,
-    "outputsize": "compact",
-    "apikey": alpha_vantage_api_key,
-}
-
 av_response = requests.get("https://www.alphavantage.co/query", params=alpha_vantage_params)
 av_response.raise_for_status()
 stock_data = av_response.json()
@@ -50,12 +55,15 @@ day_before_price = float(stock_data["Time Series (Daily)"][day_before]["4. close
 price_difference = yesterday_price - day_before_price
 percentage = price_difference/yesterday_price * 100
 if percentage >= 5 or percentage <= -5:
-    print("Get News")
+    ## STEP 2: Use https://newsapi.org
+    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
+    news_response = requests.get("https://newsapi.org/v2/everything", params=news_params)
+    news_response.raise_for_status()
+    news_data = news_response.json()
+    top_3_articles = [news_data["articles"][article] for article in range(3)]
 else:
     print("Insignificant change in price")
 
-## STEP 2: Use https://newsapi.org
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
 ## STEP 3: Use https://www.twilio.com
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
