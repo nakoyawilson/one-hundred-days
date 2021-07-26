@@ -17,8 +17,8 @@ word_back = ""
 
 
 def select_word():
-    global word_front
-    global word_back
+    global word_front, word_back, flip_timer
+    window.after_cancel(flip_timer)
     canvas.itemconfig(flashcard, image=card_front_img)
     word_front = random.choice(all_words)
     canvas.itemconfig(title_text, text=column_one_header, fill="black")
@@ -29,7 +29,7 @@ def select_word():
     word_back = translation.English.to_string(index=False)
 
     # Flip card
-    window.after(3000, flip_card)
+    flip_timer = window.after(3000, flip_card)
 
 
 def flip_card():
@@ -50,6 +50,8 @@ def save_progress():
 window = Tk()
 window.title("Vocabulary Flash Cards")
 window.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
+
+flip_timer = window.after(3000, flip_card)
 
 card_back_img = PhotoImage(file="images/card_back.png")
 card_front_img = PhotoImage(file="images/card_front.png")
