@@ -1,6 +1,8 @@
 import requests
 import os
 from datetime import datetime, timedelta
+from twilio.rest import Client
+from html.parser import HTMLParser
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
@@ -18,6 +20,18 @@ news_params = {
     "apiKey": news_api_key,
     "q": COMPANY_NAME,
 }
+
+account_sid = os.environ["TWILIO_ACCOUNT_SID"]
+auth_token = os.environ["TWILIO_AUTH_TOKEN"]
+from_phone_num = os.environ["FROM_PHONE_NUMBER"]
+to_phone_num = os.environ["TO_PHONE_NUMBER"]
+
+
+class HTMLFilter(HTMLParser):
+    text = ""
+
+    def handle_data(self, data):
+        self.text += data
 
 
 def get_yesterday(num_days):
@@ -53,30 +67,29 @@ stock_data = av_response.json()
 yesterday_price = float(stock_data["Time Series (Daily)"][yesterday]["4. close"])
 day_before_price = float(stock_data["Time Series (Daily)"][day_before]["4. close"])
 price_difference = yesterday_price - day_before_price
-percentage = price_difference/yesterday_price * 100
+percentage = price_difference / yesterday_price * 100
 if percentage >= 5 or percentage <= -5:
-    ## STEP 2: Use https://newsapi.org
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
     news_response = requests.get("https://newsapi.org/v2/everything", params=news_params)
     news_response.raise_for_status()
     news_data = news_response.json()
     top_3_articles = [news_data["articles"][article] for article in range(3)]
-else:
-    print("Insignificant change in price")
-
-
-## STEP 3: Use https://www.twilio.com
-# Send a seperate message with the percentage change and each article's title and description to your phone number. 
-
-
-#Optional: Format the SMS message like this: 
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-"""
-
+    # Send a separate message with the percentage change and each article's title and description to your phone number.
+    for article in top_3_articles:
+        if percentage > 0:
+            subject = f"{STOCK}:️ 🔺{abs(int(percentage))}%"
+        elif percentage < 0:
+            subject = f"{STOCK}: 🔻{abs(int(percentage))}%"
+        headline = f"Headline: {article['title']}"
+        brief = f"Brief: {article['description']}"
+        remove_html = HTMLFilter()
+        remove_html.feed(brief)
+        brief = remove_html.text
+        client = Client(account_sid, auth_token)
+        message = client.messages \
+            .create(
+            body=f"{subject}\n{headline}\n{brief}",
+            from_=from_phone_num,
+            to=to_phone_num
+        )
+        print(message.status)
