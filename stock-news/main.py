@@ -18,7 +18,7 @@ alpha_vantage_params = {
 news_api_key = os.environ["NEWS_API_KEY"]
 news_params = {
     "apiKey": news_api_key,
-    "q": COMPANY_NAME,
+    "qInTitle": COMPANY_NAME,
 }
 
 account_sid = os.environ["TWILIO_ACCOUNT_SID"]
