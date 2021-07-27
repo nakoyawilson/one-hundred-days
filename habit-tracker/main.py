@@ -4,8 +4,9 @@ from datetime import datetime
 pixela_endpoint = "https://pixe.la/v1/users"
 
 #  Create a user
-create_new_user = input("Would you like to create a new user? Type 'y' or 'n': ")
-if create_new_user.lower() == 'y':
+create_new_user = input(
+    "Would you like to create a new user account or use an existing one? Type 'n' for new or 'e' for existing: ")
+if create_new_user.lower() == 'n':
     pixela_token = input("Enter a token. Validation rule: [ -~]{8,128}: ")
     pixela_username = input("Enter a username. Validation rule: [a-z][a-z0-9-]{1,32}: ")
     user_params = {
@@ -16,12 +17,18 @@ if create_new_user.lower() == 'y':
     }
     response = requests.post(url=pixela_endpoint, json=user_params)
     print(response.text)
-
-# Create a graph
-create_new_graph = input("Would you like to create a new graph? Type 'y' or 'n': ")
-if create_new_graph.lower() == 'y':
+elif create_new_user.lower() == 'e':
     pixela_username = input("Enter your username: ")
     pixela_token = input("Enter your token: ")
+
+headers = {
+    "X-USER-TOKEN": pixela_token,
+}
+
+# Create a graph
+create_new_graph = input(
+    "Would you like to create a new graph or use an existing one? Type 'n' for new or 'e' for existing: ")
+if create_new_graph.lower() == 'n':
     graph_id = input("Enter a graph id. Validation rule: ^[a-z][a-z0-9-]{1,16}: ")
     graph_name = input("Enter a name for your graph: ")
     graph_units = input("Enter the unit of measurement: ")
@@ -35,18 +42,14 @@ if create_new_graph.lower() == 'y':
         "color": colour,
     }
     graph_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs"
-    headers = {
-        "X-USER-TOKEN": pixela_token,
-    }
     response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
     print(response.text)
+elif create_new_graph.lower() == 'e':
+    graph_id = input("Enter the graph id: ")
 
 # Post a pixel
 post_a_pixel = input("Would you like to post a new pixel? Type 'y' or 'n': ")
 if post_a_pixel.lower() == 'y':
-    pixela_username = input("Enter your username: ")
-    pixela_token = input("Enter your token: ")
-    graph_id = input("Enter the graph id: ")
     use_today = input("Do you want to use today's date? Type 'y' or 'n': ")
     if use_today.lower() == 'y':
         today = datetime.now()
@@ -58,9 +61,6 @@ if post_a_pixel.lower() == 'y':
         "date": formatted_date,
         "quantity": amount_of_activity,
     }
-    headers = {
-        "X-USER-TOKEN": pixela_token,
-    }
     post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
     response = requests.post(url=post_pixel_endpoint, json=pixel_data, headers=headers)
     print(response.text)
@@ -68,17 +68,11 @@ if post_a_pixel.lower() == 'y':
 # Update a pixel
 update_a_pixel = input("Would you like to update a pixel? Type 'y' or 'n': ")
 if update_a_pixel.lower() == 'y':
-    pixela_username = input("Enter your username: ")
-    pixela_token = input("Enter your token: ")
-    graph_id = input("Enter the graph id: ")
     date_to_update = input("Enter the date to update in the form YYYYMMDD: ")
     updated_activity = input("What is the updated amount of activity? ")
     update_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{date_to_update}"
     new_pixel_data = {
         "quantity": updated_activity,
-    }
-    headers = {
-        "X-USER-TOKEN": pixela_token,
     }
     response = requests.put(url=update_pixel_endpoint, json=new_pixel_data, headers=headers)
     print(response.text)
@@ -86,13 +80,7 @@ if update_a_pixel.lower() == 'y':
 # Delete a pixel
 delete_a_pixel = input("Would you like to delete a pixel? Type 'y' or 'n': ")
 if delete_a_pixel.lower() == 'y':
-    pixela_username = input("Enter your username: ")
-    pixela_token = input("Enter your token: ")
-    graph_id = input("Enter the graph id: ")
     date_to_delete = input("Enter the date to delete in the form YYYYMMDD: ")
-    headers = {
-        "X-USER-TOKEN": pixela_token,
-    }
     delete_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{date_to_delete}"
     response = requests.delete(url=delete_pixel_endpoint, headers=headers)
     print(response.text)
