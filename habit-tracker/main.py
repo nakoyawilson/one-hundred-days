@@ -18,10 +18,6 @@ if create_new_user.lower() == 'y':
     print(response.text)
 
 # Create a graph
-graph_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs"
-headers = {
-    "X-USER-TOKEN": pixela_token,
-}
 create_new_graph = input("Would you like to create a new graph? Type 'y' or 'n': ")
 if create_new_graph.lower() == 'y':
     pixela_username = input("Enter your username: ")
@@ -38,16 +34,19 @@ if create_new_graph.lower() == 'y':
         "type": unit_type,
         "color": colour,
     }
+    graph_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs"
+    headers = {
+        "X-USER-TOKEN": pixela_token,
+    }
     response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
     print(response.text)
 
 # Post a pixel
-post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
-
 post_a_pixel = input("Would you like to post a new pixel? Type 'y' or 'n': ")
 if post_a_pixel.lower() == 'y':
     pixela_username = input("Enter your username: ")
     pixela_token = input("Enter your token: ")
+    graph_id = input("Enter the graph id: ")
     use_today = input("Do you want to use today's date? Type 'y' or 'n': ")
     if use_today.lower() == 'y':
         today = datetime.now()
@@ -59,6 +58,10 @@ if post_a_pixel.lower() == 'y':
         "date": formatted_date,
         "quantity": amount_of_activity,
     }
+    headers = {
+        "X-USER-TOKEN": pixela_token,
+    }
+    post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
     response = requests.post(url=post_pixel_endpoint, json=pixel_data, headers=headers)
     print(response.text)
 
@@ -67,11 +70,15 @@ update_a_pixel = input("Would you like to update a pixel? Type 'y' or 'n': ")
 if update_a_pixel.lower() == 'y':
     pixela_username = input("Enter your username: ")
     pixela_token = input("Enter your token: ")
+    graph_id = input("Enter the graph id: ")
     date_to_update = input("Enter the date to update in the form YYYYMMDD: ")
     updated_activity = input("What is the updated amount of activity? ")
     update_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{date_to_update}"
     new_pixel_data = {
         "quantity": updated_activity,
+    }
+    headers = {
+        "X-USER-TOKEN": pixela_token,
     }
     response = requests.put(url=update_pixel_endpoint, json=new_pixel_data, headers=headers)
     print(response.text)
@@ -81,7 +88,11 @@ delete_a_pixel = input("Would you like to delete a pixel? Type 'y' or 'n': ")
 if delete_a_pixel.lower() == 'y':
     pixela_username = input("Enter your username: ")
     pixela_token = input("Enter your token: ")
+    graph_id = input("Enter the graph id: ")
     date_to_delete = input("Enter the date to delete in the form YYYYMMDD: ")
+    headers = {
+        "X-USER-TOKEN": pixela_token,
+    }
     delete_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{date_to_delete}"
     response = requests.delete(url=delete_pixel_endpoint, headers=headers)
     print(response.text)
