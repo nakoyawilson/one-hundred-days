@@ -41,7 +41,6 @@ if create_new_graph.lower() == 'y':
     print(response.text)
 
 # Post a pixel
-
 post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
 
 post_a_pixel = input("Would you like to post a new pixel? Type 'y' or 'n': ")
