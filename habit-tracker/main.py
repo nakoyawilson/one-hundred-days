@@ -12,13 +12,16 @@ user_params = {
     "notMinor": "yes",
 }
 
+# # Create the user
 # response = requests.post(url=pixela_endpoint, json=user_params)
 # print(response.text)
 
 graph_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs"
 
+graph_id = "graph1"
+
 graph_config = {
-    "id": "graph1",
+    "id": graph_id,
     "name": "Don't Break the Chain",
     "unit": "minutes",
     "type": "int",
@@ -28,5 +31,18 @@ graph_config = {
 headers = {
     "X-USER-TOKEN": pixela_token,
 }
-response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+
+# # Create the graph
+# response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+# print(response.text)
+
+post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
+
+post_pixel_config = {
+    "date": "20210727",
+    "quantity": "50",
+}
+
+# Post a pixel
+response = requests.post(url=post_pixel_endpoint, json=post_pixel_config, headers=headers)
 print(response.text)
