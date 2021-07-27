@@ -40,12 +40,27 @@ headers = {
 post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
 
 today = datetime.now()
+yesterday = datetime(2021, 7, 26)
+formatted_date = yesterday.strftime("%Y%m%d")
+minutes_of_activity = "50"
 
 pixel_data = {
-    "date": today.strftime("%Y%m%d"),
-    "quantity": "50",
+    "date": formatted_date,
+    "quantity": minutes_of_activity,
 }
 
 # # Post a pixel
 # response = requests.post(url=post_pixel_endpoint, json=pixel_data, headers=headers)
 # print(response.text)
+
+update_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{formatted_date}"
+
+updated_minutes = "30"
+
+new_pixel_data = {
+    "quantity": updated_minutes,
+}
+
+# Update a pixel
+response = requests.put(url=update_pixel_endpoint, json=new_pixel_data, headers=headers)
+print(response.text)
