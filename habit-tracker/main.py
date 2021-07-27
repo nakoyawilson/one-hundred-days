@@ -41,7 +41,7 @@ post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
 
 today = datetime.now()
 formatted_date = today.strftime("%Y%m%d")
-minutes_of_activity = "50"
+minutes_of_activity = input("How many minutes did you spend on the activity today? ")
 
 pixel_data = {
     "date": formatted_date,
@@ -54,7 +54,7 @@ pixel_data = {
 
 update_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{formatted_date}"
 
-updated_minutes = "30"
+updated_minutes = input("What is the updated number of minutes? ")
 
 new_pixel_data = {
     "quantity": updated_minutes,
@@ -66,6 +66,6 @@ new_pixel_data = {
 
 delete_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{formatted_date}"
 
-# Delete a pixel
-response = requests.delete(url=delete_pixel_endpoint, headers=headers)
-print(response.text)
+# # Delete a pixel
+# response = requests.delete(url=delete_pixel_endpoint, headers=headers)
+# print(response.text)
