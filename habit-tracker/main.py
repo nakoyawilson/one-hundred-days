@@ -38,11 +38,11 @@ headers = {
 
 post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
 
-post_pixel_data = {
+pixel_data = {
     "date": "20210727",
     "quantity": "50",
 }
 
 # Post a pixel
-response = requests.post(url=post_pixel_endpoint, json=post_pixel_data, headers=headers)
+response = requests.post(url=post_pixel_endpoint, json=pixel_data, headers=headers)
 print(response.text)
