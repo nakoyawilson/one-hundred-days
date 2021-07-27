@@ -12,5 +12,21 @@ user_params = {
     "notMinor": "yes",
 }
 
-response = requests.post(url=pixela_endpoint, json=user_params)
+# response = requests.post(url=pixela_endpoint, json=user_params)
+# print(response.text)
+
+graph_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs"
+
+graph_config = {
+    "id": "graph1",
+    "name": "Don't Break the Chain",
+    "unit": "minutes",
+    "type": "int",
+    "color": "sora",
+}
+
+headers = {
+    "X-USER-TOKEN": pixela_token,
+}
+response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
 print(response.text)
