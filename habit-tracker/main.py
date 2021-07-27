@@ -40,8 +40,7 @@ headers = {
 post_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}"
 
 today = datetime.now()
-yesterday = datetime(2021, 7, 26)
-formatted_date = yesterday.strftime("%Y%m%d")
+formatted_date = today.strftime("%Y%m%d")
 minutes_of_activity = "50"
 
 pixel_data = {
@@ -61,6 +60,12 @@ new_pixel_data = {
     "quantity": updated_minutes,
 }
 
-# Update a pixel
-response = requests.put(url=update_pixel_endpoint, json=new_pixel_data, headers=headers)
+# # Update a pixel
+# response = requests.put(url=update_pixel_endpoint, json=new_pixel_data, headers=headers)
+# print(response.text)
+
+delete_pixel_endpoint = f"{pixela_endpoint}/{pixela_username}/graphs/{graph_id}/{formatted_date}"
+
+# Delete a pixel
+response = requests.delete(url=delete_pixel_endpoint, headers=headers)
 print(response.text)
