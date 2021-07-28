@@ -5,6 +5,7 @@ import json
 
 APP_ID = os.environ["APP_ID"]
 API_KEY = os.environ["API_KEY"]
+SHEETY_AUTH = os.environ["SHEETY_AUTH"]
 
 exercise_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
 
@@ -33,6 +34,7 @@ current_time = today.strftime("%H:%M:%S %p")
 
 sheety_headers = {
     "Content-Type": "application/json",
+    "Authorization": SHEETY_AUTH,
 }
 
 for exercise in exercise_data["exercises"]:
