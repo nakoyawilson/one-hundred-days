@@ -27,9 +27,9 @@ query_json_data = json.dumps(query_data)
 nutritionix_response = requests.post(exercise_endpoint, headers=headers, data=query_json_data)
 exercise_data = nutritionix_response.json()
 
-today = datetime.now()
-current_date = today.strftime("%d/%m/%Y")
-current_time = today.strftime("%H:%M:%S %p")
+now = datetime.now()
+current_date = now.strftime("%d/%m/%Y")
+current_time = now.strftime("%H:%M:%S %p")
 
 sheety_headers = {
     "Content-Type": "application/json",
