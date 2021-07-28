@@ -5,6 +5,7 @@ import json
 
 APP_ID = os.environ["APP_ID"]
 API_KEY = os.environ["API_KEY"]
+SHEETY_ENDPOINT = os.environ["SHEETY_ENDPOINT"]
 SHEETY_AUTH = os.environ["SHEETY_AUTH"]
 
 exercise_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
@@ -25,8 +26,6 @@ query_json_data = json.dumps(query_data)
 
 nutritionix_response = requests.post(exercise_endpoint, headers=headers, data=query_json_data)
 exercise_data = nutritionix_response.json()
-
-sheety_post_endpoint = "https://api.sheety.co/9ff690a3187dd8292fa7a40986a8586d/workoutTracking/workouts"
 
 today = datetime.now()
 current_date = today.strftime("%d/%m/%Y")
@@ -51,4 +50,4 @@ for exercise in exercise_data["exercises"]:
         }
     }
     sheety_json_data = json.dumps(sheety_data)
-    sheety_response = requests.post(sheety_post_endpoint, data=sheety_json_data, headers=sheety_headers)
+    sheety_response = requests.post(SHEETY_ENDPOINT, data=sheety_json_data, headers=sheety_headers)
