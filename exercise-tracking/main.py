@@ -29,7 +29,7 @@ exercise_data = nutritionix_response.json()
 
 now = datetime.now()
 current_date = now.strftime("%d/%m/%Y")
-current_time = now.strftime("%H:%M:%S %p")
+current_time = ((now.hour + ((now.minute + (now.second / 60.0)) / 60.0)) / 24.0)
 
 sheety_headers = {
     "Content-Type": "application/json",
