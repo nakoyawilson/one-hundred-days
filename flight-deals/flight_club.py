@@ -2,7 +2,7 @@ import os
 import requests
 
 SHEETY_TOKEN = os.environ["SHEETY_TOKEN"]
-SHEETY_POST_ENDPOINT = os.environ["SHEETY_POST_ENDPOINT"]
+USERS_ENDPOINT = os.environ["USERS_ENDPOINT"]
 
 print(
     "Welcome to Nakoya's Flight Club.\nWe find the best flight deals and email you."
