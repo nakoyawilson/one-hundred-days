@@ -35,3 +35,5 @@ cheap_flights = flight_search.search_for_flights(sheet_data=updated_data, depart
 
 for cheap_flight in cheap_flights:
     notification_manager.send_sms(sms_body=cheap_flight)
+    email_contents = f"Subject: New Low Price Flight!\n\n{cheap_flight}"
+    notification_manager.send_emails(email_contents)
