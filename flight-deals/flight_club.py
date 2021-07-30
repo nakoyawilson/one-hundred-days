@@ -1,7 +1,7 @@
 import os
 import requests
 
-SHEETY_AUTH = os.environ["SHEETY_AUTH"]
+SHEETY_TOKEN = os.environ["SHEETY_TOKEN"]
 SHEETY_POST_ENDPOINT = os.environ["SHEETY_POST_ENDPOINT"]
 
 print(
