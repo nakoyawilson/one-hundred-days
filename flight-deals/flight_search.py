@@ -49,7 +49,8 @@ class FlightSearch:
                     departure_date = item["route"][0]["local_departure"].split("T")
                     formatted_departure = departure_date[0]
                     date_to_use = datetime.strptime(formatted_departure, "%Y-%m-%d")
-                    next_date = (date_to_use + timedelta(days=trip_length)).strftime("%Y-%m-%d")
-                    message = f"Low price alert! Only ￡{flight_price} to fly from {departure_city}-{departure_airport} to {arrival_city}-{arrival_airport}, from {formatted_departure} to {next_date}."
+                    return_date = (date_to_use + timedelta(days=trip_length)).strftime("%Y-%m-%d")
+                    google_flight_link = f"https://www.google.co.uk/flights?hl=en#flt={departure_airport}.{arrival_airport}.{formatted_departure}*{arrival_airport}.{departure_airport}.{return_date}"
+                    message = f"Low price alert! Only £{flight_price} to fly from {departure_city}-{departure_airport} to {arrival_city}-{arrival_airport}, from {formatted_departure} to {return_date}.\n{google_flight_link}"
                     messages.append(message)
             return messages
