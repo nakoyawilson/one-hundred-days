@@ -13,7 +13,7 @@ class FlightSearch:
             "apikey": self.API_KEY,
         }
 
-    def search_for_flights(self, sheet_data, departure_iata, from_date, to_date):
+    def search_for_flights(self, sheet_data, departure_iata, from_date, to_date, num_stop_overs):
         departure = departure_iata
         start_date = from_date
         end_date = to_date
@@ -26,9 +26,9 @@ class FlightSearch:
                 "date_from": start_date,
                 "date_to": end_date,
                 "vehicle_type": "aircraft",
-                "max_stopovers": 0,
+                "max_stopovers": num_stop_overs,
                 "curr": "GBP",
-                "nights_in_dst_from": 7,
+                "nights_in_dst_from": 4,
                 "nights_in_dst_to": 28,
                 "flight_type": "round",
                 "selected_cabins": "M",
@@ -51,6 +51,11 @@ class FlightSearch:
                     date_to_use = datetime.strptime(formatted_departure, "%Y-%m-%d")
                     return_date = (date_to_use + timedelta(days=trip_length)).strftime("%Y-%m-%d")
                     google_flight_link = f"https://www.google.co.uk/flights?hl=en#flt={departure_airport}.{arrival_airport}.{formatted_departure}*{arrival_airport}.{departure_airport}.{return_date}"
-                    message = f"Low price alert! Only £{flight_price} to fly from {departure_city}-{departure_airport} to {arrival_city}-{arrival_airport}, from {formatted_departure} to {return_date}.\n{google_flight_link}"
-                    messages.append(message)
+                    if num_stop_overs == 0:
+                        message = f"Low price alert! Only £{flight_price} to fly from {departure_city}-{departure_airport} to {arrival_city}-{arrival_airport}, from {formatted_departure} to {return_date}.\n{google_flight_link}"
+                        messages.append(message)
+                    elif num_stop_overs == 2:
+                        via_city = item["route"][0]["cityTo"]
+                        message = f"Low price alert! Only £{flight_price} to fly from {departure_city}-{departure_airport} to {arrival_city}-{arrival_airport}, from {formatted_departure} to {return_date}.\n\nFlight has 1 stop over, via {via_city}.\n{google_flight_link}"
+                        messages.append(message)
             return messages
