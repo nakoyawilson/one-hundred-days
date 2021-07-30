@@ -9,6 +9,7 @@ DEPARTURE_LIST = ["London"]
 data_manager = DataManager()
 flight_data = FlightData()
 notification_manager = NotificationManager()
+flight_search = FlightSearch()
 
 # Get list of cities
 cities = data_manager.city_list
@@ -29,9 +30,15 @@ departure_code = departure_location[0]
 # Use updated data to search for flights
 tomorrow = (datetime.now() + timedelta(days=1)).strftime("%d/%m/%Y")
 six_months_later = (datetime.now() + timedelta(days=180)).strftime("%d/%m/%Y")
-flight_search = FlightSearch()
+stop_overs = 0
 cheap_flights = flight_search.search_for_flights(sheet_data=updated_data, departure_iata=departure_code, from_date=tomorrow,
-                                           to_date=six_months_later)
+                                           to_date=six_months_later, num_stop_overs=stop_overs)
+
+if len(cheap_flights) == 0:
+    stop_overs = 2
+    cheap_flights = flight_search.search_for_flights(sheet_data=updated_data, departure_iata=departure_code,
+                                                     from_date=tomorrow,
+                                                     to_date=six_months_later, num_stop_overs=stop_overs)
 
 for cheap_flight in cheap_flights:
     notification_manager.send_sms(sms_body=cheap_flight)
