@@ -15,7 +15,7 @@ while emails_do_not_match:
     validate_email = input("Type your email again.\n")
     if email == validate_email:
         headers = {
-            "Authorization": SHEETY_AUTH,
+            "Authorization": SHEETY_TOKEN,
         }
         data = {
             "user": {
@@ -24,7 +24,7 @@ while emails_do_not_match:
                 "email": email,
             }
         }
-        response = requests.post(SHEETY_POST_ENDPOINT, json=data, headers=headers)
+        response = requests.post(USERS_ENDPOINT, json=data, headers=headers)
         response.raise_for_status()
         print("Success! Your email has been added.")
         emails_dont_match = False
