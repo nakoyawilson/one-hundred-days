@@ -12,8 +12,6 @@ class FlightData:
         self.headers = {
             "apikey": self.API_KEY,
         }
-        self.stop_overs = 0
-        self.via_city = ""
 
     def find_iata_codes(self, city_names):
         """Takes a list of city names and returns a list of the corresponding IATA Codes"""
