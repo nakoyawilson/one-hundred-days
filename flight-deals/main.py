@@ -11,14 +11,14 @@ flight_data = FlightData()
 notification_manager = NotificationManager()
 flight_search = FlightSearch()
 
-# Get list of cities
-cities = data_manager.city_list
-
-# Get list of IATA codes
-city_codes = flight_data.find_iata_codes(city_names=cities)
-
-# Add IATA codes to Google Sheet
-data_manager.add_iata_code(iata_codes=city_codes)
+# # Get list of cities
+# cities = data_manager.city_list
+#
+# # Get list of IATA codes
+# city_codes = flight_data.find_iata_codes(city_names=cities)
+#
+# # Add IATA codes to Google Sheet
+# data_manager.add_iata_code(iata_codes=city_codes)
 
 # Get updated Google Sheet data
 updated_data = data_manager.get_data()
