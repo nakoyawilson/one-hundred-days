@@ -10,7 +10,8 @@ greatest_movies = response.text
 soup = BeautifulSoup(greatest_movies, "html.parser")
 script_text = soup.find(name="script", id="__NEXT_DATA__").contents
 data = json.loads(script_text[0])
-movies = [data["props"]["pageProps"]["data"]["getArticleByFurl"]["_layout"][7]["content"]["images"][movie]["titleText"] for movie in range(100)]
+movies = [data["props"]["pageProps"]["data"]["getArticleByFurl"]["_layout"][7]["content"]["images"][movie]["titleText"]
+          for movie in range(100)]
 movies.reverse()
 
 # Correctly format and number list
