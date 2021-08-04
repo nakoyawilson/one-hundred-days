@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import lxml
 
 url = "https://www.amazon.com/gp/product/B0762LT49K/ref=ox_sc_saved_title_9?smid=A3686AOLDPXXOD&th=1"
 headers = {
