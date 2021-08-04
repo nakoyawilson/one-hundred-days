@@ -1,5 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
+import smtplib
+import os
+
+MY_EMAIL = os.environ["MY_EMAIL"]
+MY_PASSWORD = os.environ["MY_PASSWORD"]
+EMAIL_PROVIDER = "smtp.gmail.com"
+RECIPIENT = os.environ["RECIPIENT"]
 
 url = "https://www.amazon.com/gp/product/B0762LT49K/ref=ox_sc_saved_title_9?smid=A3686AOLDPXXOD&th=1"
 headers = {
@@ -12,5 +19,13 @@ response.raise_for_status()
 website_html = response.text
 
 soup = BeautifulSoup(website_html, "lxml")
-price = soup.select_one("#priceblock_ourprice").getText()
-print(price)
+price_as_string = soup.select_one("#priceblock_ourprice").getText()
+price_as_float = float(price_as_string.replace("$", ""))
+product_name = soup.select_one("#title").getText().strip()
+
+if price_as_float < 120:
+    with smtplib.SMTP(EMAIL_PROVIDER) as connection:
+        connection.starttls()
+        connection.login(user=MY_EMAIL, password=MY_PASSWORD)
+        connection.sendmail(from_addr=MY_EMAIL, to_addrs=RECIPIENT,
+                            msg=f"Subject: Amazon Price Alert!\n\n{product_name} is now {price_as_string}\n{url}")
