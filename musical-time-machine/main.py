@@ -8,8 +8,8 @@ CLIENT_ID = os.environ["CLIENT_ID"]
 CLIENT_SECRET = os.environ["CLIENT_SECRET"]
 REDIRECT_URI = "http://example.com"
 
-date_input = input("What date you would like to travel to? Type the date in the format YYYY-MM-DD: ")
-url = "https://www.billboard.com/charts/hot-100/" + date_input
+date = input("What date you would like to travel to? Type the date in the format YYYY-MM-DD: ")
+url = "https://www.billboard.com/charts/hot-100/" + date
 
 response = requests.get(url)
 response.raise_for_status()
@@ -47,7 +47,7 @@ for query in search_queries:
         continue
     else:
         results.append(result)
-print(len(results))
+print(f"{len(results)} songs successfully added to playlist")
 
 user_id = sp.current_user()["id"]
 name = f"{date} Billboard 100"
