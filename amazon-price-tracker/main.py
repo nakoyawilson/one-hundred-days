@@ -8,6 +8,8 @@ MY_PASSWORD = os.environ["MY_PASSWORD"]
 EMAIL_PROVIDER = "smtp.gmail.com"
 RECIPIENT = os.environ["RECIPIENT"]
 THRESHOLD_PRICE = 120
+PRICE_CSS_SELECTOR = "#priceblock_ourprice"
+PRODUCT_NAME_CSS_SELECTOR = "#title"
 
 url = "https://www.amazon.com/gp/product/B0762LT49K/ref=ox_sc_saved_title_9?smid=A3686AOLDPXXOD&th=1"
 headers = {
@@ -20,9 +22,9 @@ response.raise_for_status()
 website_html = response.text
 
 soup = BeautifulSoup(website_html, "lxml")
-price_as_string = soup.select_one("#priceblock_ourprice").getText()
+price_as_string = soup.select_one(PRICE_CSS_SELECTOR).getText()
 price_as_float = float(price_as_string.replace("$", ""))
-product_name = soup.select_one("#title").getText().strip()
+product_name = soup.select_one(PRODUCT_NAME_CSS_SELECTOR).getText().strip()
 
 if price_as_float < THRESHOLD_PRICE:
     with smtplib.SMTP(EMAIL_PROVIDER) as connection:
