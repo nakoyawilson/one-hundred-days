@@ -7,6 +7,7 @@ driver = webdriver.Chrome(executable_path=chrome_driver_path)
 driver.get("https://orteil.dashnet.org/cookieclicker/")
 cookie = driver.find_element_by_css_selector("#bigCookie")
 
+
 def click_cookie():
     timeout = 5
     timeout_start = time.time()
@@ -16,7 +17,12 @@ def click_cookie():
 
 def buy_item():
     store_items_objects = driver.find_elements_by_css_selector("#products .unlocked")
-    store_items_objects[0].click()
+    store_items_text = [item_object.text.split("\n") for item_object in store_items_objects]
+    money = int(driver.find_element_by_css_selector("#cookies").text.split("\n")[0].split()[0].replace(",", ""))
+    for index, product in reversed(list(enumerate(store_items_objects))):
+        if money > int(store_items_text[index][1].replace(",","")):
+            driver.execute_script('arguments[0].click()', store_items_objects[index])
+            break
 
 
 end_game = 300
