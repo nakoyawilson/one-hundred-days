@@ -22,7 +22,7 @@ def buy_upgrade():
     buy_factory = driver.find_element_by_css_selector("#buyFactory")
     buy_mine = driver.find_element_by_css_selector("#buyMine")
     buy_shipment = driver.find_element_by_css_selector("#buyShipment")
-    buy_alchmey_lab = driver.find_element_by_css_selector("#buyAlchemy\ lab")
+    buy_alchemy_lab = driver.find_element_by_css_selector("#buyAlchemy\ lab")
     buy_portal = driver.find_element_by_css_selector("#buyPortal")
     buy_time_machine = driver.find_element_by_css_selector("#buyTime\ machine")
     cursor_cost = driver.find_element_by_xpath('//*[@id="buyCursor"]/b').text.split()[-1].replace(",", "")
@@ -38,7 +38,7 @@ def buy_upgrade():
     elif int(money) >= int(portal_cost):
         buy_portal.click()
     elif int(money) >= int(alchemy_lab_cost):
-        buy_alchmey_lab.click()
+        buy_alchemy_lab.click()
     elif int(money) >= int(shipment_cost):
         buy_shipment.click()
     elif int(money) >= int(mine_cost):
