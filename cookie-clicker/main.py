@@ -1,4 +1,4 @@
-from selenium import webdriver
+from selenium import webdriver, common
 import time
 
 chrome_driver_path = "/Users/nakoya/Development/chromedriver"
@@ -25,11 +25,21 @@ def buy_item():
             break
 
 
+def buy_upgrade():
+    upgrades = driver.find_elements_by_css_selector("#upgrades .enabled")
+    if len(upgrades) > 0:
+        try:
+            driver.execute_script('arguments[0].click()', driver.find_element_by_xpath('//*[@id="upgrade0"]'))
+        except common.exceptions.StaleElementReferenceException:
+            pass
+
+
 end_game = 300
 start_game = time.time()
 while time.time() < start_game + end_game:
     click_cookie()
     buy_item()
+    buy_upgrade()
 cookies_per_second = driver.find_element_by_css_selector("#cookies").text.split("\n")[1]
 print(cookies_per_second)
 driver.quit()
