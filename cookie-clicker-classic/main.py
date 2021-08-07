@@ -9,7 +9,7 @@ cookie = driver.find_element_by_css_selector("#cookie")
 
 
 def click_cookie():
-    timeout = 10
+    timeout = 5
     timeout_start = time.time()
     while time.time() < timeout_start + timeout:
         cookie.click()
