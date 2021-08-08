@@ -73,5 +73,12 @@ for i in range(100):
         do_not_add_to_homepage.click()
     except common.exceptions.NoSuchElementException:
         pass
+    try:
+        sleep(2)
+        dismiss_see_who_likes_you = driver.find_element_by_css_selector(
+            "#s-1005392171 > div > div.Bdrs\(8px\).Ov\(h\).Ta\(c\).Bgc\(\#fff\).M\(10px\).P\(0\).W\(100\%\).Maw\(\$desktop-modal-width\)--ml.Z\(1\) > div > div.Px\(44px\).Px\(20px\)--s > button.button.Lts\(\$ls-s\).Z\(0\).CenterAlign.Mx\(a\).Cur\(p\).Tt\(u\).Ell.Bdrs\(100px\).Px\(24px\).Px\(20px\)--s.Py\(0\).Mih\(40px\).C\(\$c-secondary\).C\(\$c-base\)\:h.Fw\(\$semibold\).focus-button-style.D\(b\).My\(20px\).Mx\(a\)")
+        dismiss_see_who_likes_you.click()
+    except common.exceptions.NoSuchElementException:
+        pass
 
 driver.quit()
