@@ -73,3 +73,5 @@ for i in range(100):
         do_not_add_to_homepage.click()
     except common.exceptions.NoSuchElementException:
         pass
+
+driver.quit()
