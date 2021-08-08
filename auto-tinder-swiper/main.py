@@ -18,6 +18,27 @@ sleep(2)
 start_log_in = driver.find_element_by_css_selector("#s722988905 > div > div.App__body.H\(100\%\).Pos\(r\).Z\(0\) > div > main > div.H\(100\%\) > div > div > div > div > header > div > div:nth-child(2) > div.H\(40px\).Px\(28px\) > a")
 start_log_in.click()
 
-sleep(3)
+sleep(5)
 log_in_with_google = driver.find_element_by_css_selector("#s-1005392171 > div > div > div.Ta\(c\).H\(100\%\).D\(f\).Fxd\(c\).Pos\(r\) > div > div:nth-child(4) > span > div:nth-child(1) > div > button")
 log_in_with_google.click()
+
+driver.window_handles
+base_window = driver.window_handles[0]
+google_log_in_window = driver.window_handles[1]
+driver.switch_to.window(google_log_in_window)
+
+sleep(2)
+email = driver.find_element_by_name("identifier")
+email.send_keys(EMAIL)
+sleep(1)
+email_next_button = driver.find_element_by_css_selector("#identifierNext > div > button")
+email_next_button.click()
+
+sleep(2)
+password = driver.find_element_by_name("password")
+password.send_keys(PASSWORD)
+sleep(1)
+password_next_button = driver.find_element_by_css_selector("#passwordNext > div > button")
+password_next_button.click()
+
+driver.switch_to.window(base_window)
