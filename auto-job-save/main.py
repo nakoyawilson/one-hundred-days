@@ -73,3 +73,5 @@ for job in job_listings:
     dismiss_notification = driver.find_element_by_css_selector(".artdeco-toast-item__dismiss")
     dismiss_notification.click()
 
+driver.quit()
+
