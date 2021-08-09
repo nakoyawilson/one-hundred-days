@@ -14,7 +14,7 @@ chrome_driver_path = "/Users/nakoya/Development/chromedriver"
 driver = webdriver.Chrome(executable_path=chrome_driver_path)
 driver.get(LINKEDIN_URL)
 
-sleep(3)
+sleep(2)
 sign_in = driver.find_element_by_css_selector(
     "body > div.base-serp-page > header > nav > div > a.nav__button-secondary")
 sign_in.click()
@@ -28,7 +28,7 @@ sleep(2)
 submit = driver.find_element_by_css_selector("#organic-div > form > div.login__form_action_container > button")
 submit.click()
 
-sleep(5)
+sleep(2)
 driver.fullscreen_window()
 
 sleep(2)
