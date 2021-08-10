@@ -27,8 +27,6 @@ class InternetSpeedTwitterBot:
         upload_speed = self.driver.find_element_by_css_selector(".upload-speed")
         self.down = download_speed.text
         self.up = upload_speed.text
-        sleep(2)
-        self.driver.quit()
 
     def tweet_at_provider(self):
         if float(self.down) < PROMISED_DOWN * 0.9 or float(self.up) < PROMISED_UP * 0.9:
@@ -45,12 +43,14 @@ class InternetSpeedTwitterBot:
             message = f"Hey {INTERNET_PROVIDER}, why is my internet speed {self.down}down/{self.up}up when I pay for {PROMISED_DOWN}down/{PROMISED_UP}up?"
             text_box = self.driver.find_element_by_css_selector(".public-DraftStyleDefault-block")
             text_box.send_keys(message)
-            tweet = self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/div')
+            sleep(1)
+            tweet = self.driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div[1]/div/div[2]/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/div[3]')
             tweet.click()
-            sleep(2)
+            sleep(5)
             self.driver.quit()
 
 
 internet_speed_twitter_bot = InternetSpeedTwitterBot(CHROME_DRIVER_PATH)
 internet_speed_twitter_bot.get_internet_speed()
 internet_speed_twitter_bot.tweet_at_provider()
+
