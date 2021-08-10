@@ -1,9 +1,9 @@
 import os
-from selenium import webdriver
+from selenium import webdriver, common
 from time import sleep
 
 CHROME_DRIVER_PATH = "/Users/nakoya/Development/chromedriver"
-SIMILAR_ACCOUNT = "python.hub"
+SIMILAR_ACCOUNT = "pycoders"
 USERNAME = os.environ["USERNAME"]
 PASSWORD = os.environ["PASSWORD"]
 
@@ -24,16 +24,31 @@ class InstaFollower:
         sleep(1)
         login_button = self.driver.find_element_by_xpath('//*[@id="loginForm"]/div/div[3]/button')
         login_button.click()
+        sleep(2)
 
     def find_followers(self):
-        pass
+        self.driver.get("https://www.instagram.com/" + SIMILAR_ACCOUNT)
+        sleep(2)
+        followers_list = self.driver.find_element_by_partial_link_text("followers")
+        followers_list.click()
+        sleep(2)
+        follower_popup = self.driver.find_element_by_xpath('/html/body/div[6]/div/div/div[2]')
+        self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", follower_popup)
 
     def follow(self):
-        pass
+        follow_buttons = self.driver.find_elements_by_css_selector("button.sqdOP.L3NKy.y3zKF")
+        all_follow_buttons = [button for button in follow_buttons]
+        for follow_button in all_follow_buttons:
+            try:
+                sleep(1)
+                follow_button.click()
+            except common.exceptions.ElementClickInterceptedException:
+                sleep(1)
+                cancel_button = self.driver.find_elements_by_css_selector("button.aOOlW.HoLwm")
+                cancel_button.click()
 
 
 insta_follower_bot = InstaFollower(CHROME_DRIVER_PATH)
 insta_follower_bot.login()
 insta_follower_bot.find_followers()
 insta_follower_bot.follow()
-
