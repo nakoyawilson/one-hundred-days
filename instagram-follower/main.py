@@ -1,5 +1,6 @@
 import os
 from selenium import webdriver
+from time import sleep
 
 CHROME_DRIVER_PATH = "/Users/nakoya/Development/chromedriver"
 SIMILAR_ACCOUNT = "python.hub"
@@ -22,7 +23,7 @@ class InstaFollower:
         pass
 
 
-insta_follower_bot = InstaFollower()
+insta_follower_bot = InstaFollower(CHROME_DRIVER_PATH)
 insta_follower_bot.login()
 insta_follower_bot.find_followers()
 insta_follower_bot.follow()
