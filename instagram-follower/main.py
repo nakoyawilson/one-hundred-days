@@ -30,20 +30,24 @@ class InstaFollower:
         self.driver.get("https://www.instagram.com/" + SIMILAR_ACCOUNT)
         sleep(2)
         followers_list = self.driver.find_element_by_partial_link_text("followers")
+        follower_count = followers_list.text
+        follower_count_as_int = int(follower_count.split("k")[0]) * 1000
         followers_list.click()
         sleep(2)
         follower_popup = self.driver.find_element_by_xpath('/html/body/div[6]/div/div/div[2]')
-        self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", follower_popup)
+        for i in range(10):
+            sleep(5)
+            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", follower_popup)
 
     def follow(self):
         follow_buttons = self.driver.find_elements_by_css_selector("button.sqdOP.L3NKy.y3zKF")
         all_follow_buttons = [button for button in follow_buttons]
         for follow_button in all_follow_buttons:
             try:
-                sleep(1)
+                sleep(2)
                 follow_button.click()
             except common.exceptions.ElementClickInterceptedException:
-                sleep(1)
+                sleep(2)
                 cancel_button = self.driver.find_elements_by_css_selector("button.aOOlW.HoLwm")
                 cancel_button.click()
 
