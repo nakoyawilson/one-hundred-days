@@ -31,7 +31,6 @@ class InstaFollower:
         sleep(2)
         followers_list = self.driver.find_element_by_partial_link_text("followers")
         follower_count = followers_list.text
-        follower_count_as_int = int(follower_count.split("k")[0]) * 1000
         followers_list.click()
         sleep(2)
         follower_popup = self.driver.find_element_by_xpath('/html/body/div[6]/div/div/div[2]')
@@ -44,12 +43,13 @@ class InstaFollower:
         all_follow_buttons = [button for button in follow_buttons]
         for follow_button in all_follow_buttons:
             try:
-                sleep(2)
+                sleep(4)
                 follow_button.click()
             except common.exceptions.ElementClickInterceptedException:
                 sleep(2)
                 cancel_button = self.driver.find_elements_by_css_selector("button.aOOlW.HoLwm")
                 cancel_button.click()
+        self.driver.quit()
 
 
 insta_follower_bot = InstaFollower(CHROME_DRIVER_PATH)
