@@ -4,27 +4,22 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
 <div class="wrapper">
     <div class="top">
         <div class="title"><h1>My Blog</h1></div>
     </div>
+    {% for post in posts: %}
     <div class="content">
         <div class="card">
-            <h2>Just a blog post</h2>
-            <p class="text">Lorem ipsum dolor sit </p>
-            <a href="#">Read</a>
+            <h2>{{ post["title"] }}</h2>
+            <p class="text">{{ post["subtitle"] }}</p>
+            <a href="post/{{ post['id'] }}">Read</a>
         </div>
     </div>
-    <div class="content">
-        <div class="card">
-            <h2>Another blog post</h2>
-            <p class="text">Lorem ipsum dolor sit </p>
-            <a href="#">Read</a>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 </body>
 <footer>
