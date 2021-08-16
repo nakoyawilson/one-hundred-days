@@ -13,7 +13,7 @@ def start_game():
 random_number = random.randint(0, 9)
 
 
-@app.route("/URL/<int:user_guess>")
+@app.route("/<int:user_guess>")
 def check_number(user_guess):
     if user_guess == random_number:
         return '<h1 style="color:green">You found me!</h1>' \
