@@ -50,3 +50,14 @@ Day 46. musical-time-machine<br />
 Day 47. amazon-price-tracker<br />
 Day 48. cookie-clicker-classic & cookie-clicker<br />
 Day 49. auto-tinder-swiper<br />
+Day 50. auto-job-save<br />
+Day 51. internet-speed-twitter-bot<br />
+Day 52. instagram-follower<br />
+Day 53. Zillow-Rental-Research<br />
+Day 54. Introduction to Web Development with Flask<br />
+Day 55. higher-lower<br />
+Day 56. name-card<br />
+Day 57. blog-templating<br />
+Day 58. upgraded-blog<br />
+Day 59. upgraded-blog (with functional form)<br />
+Day 60. flask-secrets<br />
