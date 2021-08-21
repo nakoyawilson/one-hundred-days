@@ -63,8 +63,8 @@
  .card {
 	 color: inherit;
 	 cursor: pointer;
-	 width: calc(33% - 3rem);
-	 min-width: calc(33% - 3rem);
+	 width: 35%;
+	 min-width: 33%;
 	 height: 400px;
 	 min-height: 400px;
 	 perspective: 1000px;
@@ -73,7 +73,7 @@
 }
  @media screen and (max-width: 800px) {
 	 .card {
-		 width: calc(50% - 3rem);
+		 width: 50%;
 	}
 }
  @media screen and (max-width: 500px) {
@@ -98,7 +98,6 @@
 	 transition: ease-in-out 600ms;
 }
  .front {
-	 background-size: cover;
 	 padding: 2rem;
 	 font-size: 1.618rem;
 	 font-weight: 600;
