@@ -24,24 +24,12 @@ class Movie(db.Model):
     year = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Float, nullable=False)
-    ranking = db.Column(db.Integer, nullable=False)
+    ranking = db.Column(db.Integer)
     review = db.Column(db.String(250), nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
 
 
 db.create_all()
-
-new_movie = Movie(
-    title="Phone Booth",
-    year=2002,
-    description="Publicist Stuart Shepard finds himself trapped in a phone booth, pinned down by an extortionist's sniper rifle. Unable to leave or receive outside help, Stuart's negotiation with the caller leads to a jaw-dropping climax.",
-    rating=7.3,
-    ranking=10,
-    review="My favourite character was the caller.",
-    img_url="https://image.tmdb.org/t/p/w500/tjrX2oWRCM3Tvarz38zlZM7Uc10.jpg"
-)
-# db.session.add(new_movie)
-# db.session.commit()
 
 
 class RateMovieForm(FlaskForm):
@@ -57,7 +45,11 @@ class AddMovieForm(FlaskForm):
 
 @app.route("/")
 def home():
-    all_movies = db.session.query(Movie).all()
+    all_movies = db.session.query(Movie).order_by(Movie.rating).all()
+    index = 0
+    for num in range(len(all_movies), 0, -1):
+        all_movies[index].ranking = num
+        index += 1
     return render_template("index.html", movies=all_movies)
 
 
@@ -98,6 +90,31 @@ def add():
         results = response.json()
         return render_template('select.html', results=results["results"])
     return render_template('add.html', form=form)
+
+
+@app.route('/select', methods=['GET', 'POST'])
+def select():
+    movie_id = request.args.get('id')
+    parameters = {
+        "api_key": API_KEY,
+        "language": "en-US",
+    }
+    response = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}", params=parameters)
+    response.raise_for_status()
+    results = response.json()
+    title = results["original_title"]
+    img_url = f"https://image.tmdb.org/t/p/w500{results['poster_path']}"
+    year = results["release_date"][:4]
+    description = results["overview"]
+    new_movie = Movie(
+        title=title,
+        year=year,
+        description=description,
+        img_url=img_url
+    )
+    db.session.add(new_movie)
+    db.session.commit()
+    return redirect(url_for('edit', id=new_movie.id))
 
 
 if __name__ == '__main__':
