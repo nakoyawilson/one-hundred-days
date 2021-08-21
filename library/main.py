@@ -18,7 +18,7 @@ class Book(db.Model):
 db.create_all()
 
 
-@app.route('/')
+@app.route("/")
 def home():
     all_books = db.session.query(Book).all()
     return render_template('index.html', books=all_books)
@@ -36,6 +36,28 @@ def add():
         return redirect('/')
     else:
         return render_template('add.html')
+
+
+@app.route("/edit", methods=["GET", "POST"])
+def edit():
+    book_id = request.args.get('id')
+    book_to_update = Book.query.get(book_id)
+    if request.method == "POST":
+        new_rating = request.form["new_rating"]
+        book_to_update.rating = new_rating
+        db.session.commit()
+        return redirect('/')
+    else:
+        return render_template('edit.html', book=book_to_update)
+
+
+@app.route("/delete")
+def delete():
+    book_id = request.args.get('id')
+    book_to_delete = Book.query.get(book_id)
+    db.session.delete(book_to_delete)
+    db.session.commit()
+    return redirect('/')
 
 
 if __name__ == "__main__":
