@@ -23,7 +23,7 @@ def add():
         }
         all_books.append(book)
         print(all_books)
-        return render_template('add.html')
+        return redirect('/')
     else:
         return render_template('add.html')
 
