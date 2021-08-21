@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Rating</title>
 </head>
 <body>
-
+    <p>Book Name: {{ book.title }}</p>
+    <p>Current Rating: {{ book.rating }}</p>
+        <form action="" method="POST">
+            <input id="new_rating" name="new_rating" type="text">
+        <button type="submit">Change Rating</button>
 </body>
 </html>
