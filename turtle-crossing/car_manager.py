@@ -7,13 +7,11 @@ MOVE_INCREMENT = 10
 
 STARTING_X = 300
 
+
 class CarManager(Turtle):
 
     def __init__(self):
         super().__init__()
-        self.car_list = []
-        self.create_car()
-        self.create_car()
         self.create_car()
 
     def create_car(self):
@@ -24,9 +22,6 @@ class CarManager(Turtle):
         self.color(random.choice(COLORS))
         self.setheading(180)
         self.goto(STARTING_X, starting_y)
-
-    def add_car(self):
-        self.create_car()
 
     def move(self):
         self.forward(STARTING_MOVE_DISTANCE)
