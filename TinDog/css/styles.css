@@ -166,7 +166,19 @@ p {
 
 }
 
-@media (min-width: 992px) and (max-width: 1160px) {
+@media (min-width: 992px) and (max-width: 1270px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1150px) {
+  .features-section {
+    margin-top: -15%;
+  }
+}
+
+@media (max-width: 576px) {
   h1 {
     font-size: 2.75rem;
   }
