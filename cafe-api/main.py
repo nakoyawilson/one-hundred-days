@@ -28,6 +28,7 @@ class Cafe(db.Model):
 id_error = {
     "Not Found": "Sorry, a cafe with that id was not found in the database."
 }
+api_key_error = "Sorry, that's not allowed. Make sure you have the correct API Key."
 
 
 def create_cafe_dictionary(cafe):
@@ -75,24 +76,28 @@ def search_for_cafes():
 # HTTP POST - Create Record
 @app.route("/add", methods=["GET", "POST"])
 def add_new_cafe():
-    new_cafe = Cafe(
-        name=request.form.get("name"),
-        map_url=request.form.get("map_url"),
-        img_url=request.form.get("img_url"),
-        location=request.form.get("location"),
-        seats=request.form.get("seats"),
-        has_toilet=bool(request.form.get("has_toilet")),
-        has_wifi=bool(request.form.get("has_wifi")),
-        has_sockets=bool(request.form.get("has_sockets")),
-        can_take_calls=bool(request.form.get("can_take_calls")),
-        coffee_price=request.form.get("coffee_price"),
-    )
-    db.session.add(new_cafe)
-    db.session.commit()
-    success = {
-        "success": "Successfully added the new cafe."
-    }
-    return jsonify(response=success)
+    api_key = request.args.get("api-key")
+    if api_key == "TopSecretAPIKey":
+        new_cafe = Cafe(
+            name=request.form.get("name"),
+            map_url=request.form.get("map_url"),
+            img_url=request.form.get("img_url"),
+            location=request.form.get("location"),
+            seats=request.form.get("seats"),
+            has_toilet=bool(request.form.get("has_toilet")),
+            has_wifi=bool(request.form.get("has_wifi")),
+            has_sockets=bool(request.form.get("has_sockets")),
+            can_take_calls=bool(request.form.get("can_take_calls")),
+            coffee_price=request.form.get("coffee_price"),
+        )
+        db.session.add(new_cafe)
+        db.session.commit()
+        success = {
+            "success": "Successfully added the new cafe."
+        }
+        return jsonify(response=success)
+    else:
+        return jsonify(error=api_key_error), 403
 
 
 # HTTP PUT/PATCH - Update Record
@@ -117,7 +122,7 @@ def delete_a_cafe(cafe_id):
         db.session.commit()
         return jsonify(success="Successfully deleted the cafe."), 200
     elif api_key != "TopSecretAPIKey":
-        return jsonify(error="Sorry, that's not allowed. Make sure you have the correct api-key."), 403
+        return jsonify(error=api_key_error), 403
     elif not cafe_to_delete:
         return jsonify(error=id_error), 404
 
