@@ -25,6 +25,11 @@ class Cafe(db.Model):
     coffee_price = db.Column(db.String(250), nullable=True)
 
 
+id_error = {
+    "Not Found": "Sorry, a cafe with that id was not found in the database."
+}
+
+
 def create_cafe_dictionary(cafe):
     """Converts cafe object to dictionary"""
     cafe_dictionary = cafe.__dict__
@@ -99,13 +104,22 @@ def update_price(cafe_id):
         db.session.commit()
         return jsonify(success="Successfully updated the price."), 200
     else:
-        error_message = {
-            "Not Found": "Sorry, a cafe with that id was not found in the database."
-        }
-        return jsonify(error=error_message), 404
+        return jsonify(error=id_error), 404
 
 
 # HTTP DELETE - Delete Record
+@app.route("/report-closed/<int:cafe_id>", methods=["DELETE"])
+def delete_a_cafe(cafe_id):
+    api_key = request.args.get("api-key")
+    cafe_to_delete = Cafe.query.get(cafe_id)
+    if api_key == "TopSecretAPIKey" and cafe_to_delete:
+        db.session.delete(cafe_to_delete)
+        db.session.commit()
+        return jsonify(success="Successfully deleted the cafe."), 200
+    elif api_key != "TopSecretAPIKey":
+        return jsonify(error="Sorry, that's not allowed. Make sure you have the correct api-key."), 403
+    elif not cafe_to_delete:
+        return jsonify(error=id_error), 404
 
 
 if __name__ == '__main__':
