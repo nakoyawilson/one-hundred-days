@@ -109,5 +109,13 @@ def edit_post(post_id):
     return render_template("make-post.html", form=edit_form, h1_content=h1_content)
 
 
+@app.route("/delete/<post_id>")
+def delete_post(post_id):
+    post_to_delete = BlogPost.query.get(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return redirect("/")
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
