@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
@@ -71,6 +71,7 @@ def create_post():
     form = CreatePostForm()
     current_date = datetime.now().date()
     formatted_date = current_date.strftime("%B %d, %Y")
+    h1_content = "New Post"
     if form.validate_on_submit():
         new_post = BlogPost(
             title=form.title.data,
@@ -83,11 +84,29 @@ def create_post():
         db.session.add(new_post)
         db.session.commit()
         return redirect("/")
-    return render_template("make-post.html", form=form)
+    return render_template("make-post.html", form=form, h1_content=h1_content)
 
-@app.route("/edit")
-def edit_post():
-    return render_template("index.html")
+
+@app.route("/edit-post/<post_id>", methods=['GET', 'POST'])
+def edit_post(post_id):
+    post_to_edit = BlogPost.query.get(post_id)
+    edit_form = CreatePostForm(
+        title=post_to_edit.title,
+        subtitle=post_to_edit.subtitle,
+        img_url=post_to_edit.img_url,
+        author=post_to_edit.author,
+        body=post_to_edit.body
+    )
+    h1_content = "Edit Post"
+    if edit_form.validate_on_submit():
+        post_to_edit.title = edit_form.title.data
+        post_to_edit.subtitle = edit_form.subtitle.data
+        post_to_edit.img_url = edit_form.img_url.data
+        post_to_edit.author = edit_form.author.data
+        post_to_edit.body= edit_form.body.data
+        db.session.commit()
+        return redirect(url_for("show_post", index=post_id))
+    return render_template("make-post.html", form=edit_form, h1_content=h1_content)
 
 
 if __name__ == "__main__":
