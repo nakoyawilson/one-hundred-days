@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditor, CKEditorField
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -35,20 +36,20 @@ class CreatePostForm(FlaskForm):
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     author = StringField("Your Name", validators=[DataRequired()])
     img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
-    body = StringField("Blog Content", validators=[DataRequired()])
+    body = CKEditorField("Blog Content", validators=[DataRequired()])
     submit = SubmitField("Submit Post")
 
 
-posts = db.session.query(BlogPost).all()
-
 @app.route('/')
 def get_all_posts():
+    posts = db.session.query(BlogPost).all()
     return render_template("index.html", all_posts=posts)
 
 
 @app.route("/post/<int:index>")
 def show_post(index):
     requested_post = None
+    posts = db.session.query(BlogPost).all()
     for blog_post in posts:
         if blog_post.id == index:
             requested_post = blog_post
@@ -65,9 +66,27 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/new-post", methods=['GET', 'POST'])
+def create_post():
+    form = CreatePostForm()
+    current_date = datetime.now().date()
+    formatted_date = current_date.strftime("%B %d, %Y")
+    if form.validate_on_submit():
+        new_post = BlogPost(
+            title=form.title.data,
+            subtitle=form.subtitle.data,
+            date=formatted_date,
+            body=form.body.data,
+            author=form.author.data,
+            img_url=form.img_url.data,
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect("/")
+    return render_template("make-post.html", form=form)
+
 @app.route("/edit")
 def edit_post():
-    id = request.args.get('post_id')
     return render_template("index.html")
 
 
