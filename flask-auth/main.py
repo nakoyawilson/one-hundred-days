@@ -10,6 +10,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 
 # CREATE TABLE IN DB
 class User(UserMixin, db.Model):
@@ -43,24 +46,47 @@ def register():
         return render_template("register.html")
 
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        user = User.query.filter_by(email=request.form["email"]).first()
+        password = request.form["password"]
+        if not user:
+            flash('That email does not exist, please try again.')
+            return redirect("/login")
+        else:
+            password_hash = user.password
+            if check_password_hash(password_hash, password):
+                login_user(user)
+                return redirect("/secrets")
+            else:
+                flash('Incorrect password, please try again.')
+                return redirect("/login")
     return render_template("login.html")
 
 
 @app.route('/secrets')
+@login_required
 def secrets():
     return render_template("secrets.html")
 
 
 @app.route('/logout')
+@login_required
 def logout():
-    pass
+    logout_user()
+    return redirect("/")
 
 
 @app.route('/download')
+@login_required
 def download():
     return send_from_directory(directory="static", path="files/cheat_sheet.pdf")
+
+
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(id)
 
 
 if __name__ == "__main__":
