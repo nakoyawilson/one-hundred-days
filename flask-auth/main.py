@@ -30,10 +30,11 @@ def home():
 def register():
     if request.method == "POST":
         user_name = request.form["name"]
+        password = generate_password_hash(request.form["password"], method='pbkdf2:sha256', salt_length=8)
         new_user = User(
             name=user_name,
             email=request.form["email"],
-            password=request.form["password"],
+            password=password,
         )
         db.session.add(new_user)
         db.session.commit()
@@ -59,7 +60,7 @@ def logout():
 
 @app.route('/download')
 def download():
-    pass
+    return send_from_directory(directory="static", path="files/cheat_sheet.pdf")
 
 
 if __name__ == "__main__":
