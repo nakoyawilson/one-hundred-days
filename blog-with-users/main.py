@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from functools import wraps
+from flask import Flask, render_template, redirect, url_for, flash, abort, g
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from datetime import date
@@ -44,6 +45,16 @@ class User(UserMixin, db.Model):
 # db.create_all()
 
 
+def admin_only(function):
+    @wraps(function)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated or current_user.id != 1:
+            return abort(403)
+        return function(*args, **kwargs)
+
+    return decorated_function
+
+
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.all()
@@ -85,9 +96,6 @@ def login():
             return redirect("/login")
         else:
             password_hash = user.password
-            print(password_hash)
-            print(password)
-            print(check_password_hash(password_hash, password))
             if check_password_hash(password_hash, password):
                 login_user(user)
                 return redirect("/")
@@ -126,6 +134,7 @@ def contact():
 
 
 @app.route("/new-post")
+@admin_only
 def add_new_post():
     form = CreatePostForm()
     if form.validate_on_submit():
@@ -144,6 +153,7 @@ def add_new_post():
 
 
 @app.route("/edit-post/<int:post_id>")
+@admin_only
 def edit_post(post_id):
     post = BlogPost.query.get(post_id)
     edit_form = CreatePostForm(
@@ -166,6 +176,7 @@ def edit_post(post_id):
 
 
 @app.route("/delete/<int:post_id>")
+@admin_only
 def delete_post(post_id):
     post_to_delete = BlogPost.query.get(post_id)
     db.session.delete(post_to_delete)
