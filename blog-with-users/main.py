@@ -138,14 +138,18 @@ def show_post(post_id):
     form = CommentForm()
     requested_post = BlogPost.query.get(post_id)
     if form.validate_on_submit():
-        new_comment = Comment(
-            author = current_user,
-            post_id=requested_post.id,
-            text = form.text.data,
-        )
-        db.session.add(new_comment)
-        db.session.commit()
-        return redirect(url_for("show_post", post_id=requested_post.id))
+        if not current_user.is_authenticated:
+            flash("You need to log in or register to comment.")
+            return redirect("/login")
+        else:
+            new_comment = Comment(
+                author = current_user,
+                post_id=requested_post.id,
+                text = form.text.data,
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+            return redirect(url_for("show_post", post_id=requested_post.id))
     return render_template("post.html", post=requested_post, form=form)
 
 
