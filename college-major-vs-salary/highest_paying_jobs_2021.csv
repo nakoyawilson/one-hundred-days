@@ -1,0 +1,101 @@
+Rank,Major,Degree Type,Early Career Pay,Mid-Career Pay,% High Meaning
+1,Petroleum Engineering,Bachelors,93200,187300,67%
+2,Operations Research & Industrial Engineering,Bachelors,84800,170400,28%
+3,Electrical Engineering & Computer Science (EECS),Bachelors,108500,159300,46%
+4,Interaction Design,Bachelors,68300,155800,55%
+5,Public Accounting,Bachelors,59800,147700,47%
+6,Operations Research,Bachelors,83500,147400,54%
+7,Applied Economics and Management,Bachelors,66100,146400,67%
+8,Business Computing (BC),Bachelors,73000,143600,-
+9,Actuarial Mathematics,Bachelors,64300,143400,51%
+10,Electrical Power Engineering,Bachelors,76100,142600,68%
+11,Information & Computer Science,Bachelors,58600,140900,62%
+12,Aeronautics & Astronautics,Bachelors,77600,139600,56%
+13,Systems Engineering,Bachelors,77700,139200,53%
+14,Econometrics,Bachelors,64200,139000,35%
+15,Pharmacy,Bachelors,68600,138700,78%
+16,Aerospace Studies,Bachelors,55800,136600,-
+17,Building Science,Bachelors,53800,135900,53%
+17,Chemical Engineering,Bachelors,76900,135900,55%
+19,Cognitive Science,Bachelors,68700,135200,42%
+20,Actuarial Science,Bachelors,67700,134400,43%
+21,Political Economy,Bachelors,65100,133500,29%
+22,Computer Systems Engineering,Bachelors,79000,133200,51%
+23,Electrical & Computer Engineering (ECE),Bachelors,78100,131600,49%
+24,Computer Science (CS) & Engineering,Bachelors,79400,131300,44%
+24,Marine Engineering,Bachelors,79900,131300,60%
+26,Aeronautical Engineering,Bachelors,74700,131100,66%
+27,Computer Engineering (CE),Bachelors,79000,131000,46%
+28,Naval Architecture & Marine Engineering,Bachelors,74400,130700,49%
+29,Entrepreneurship & Marketing,Bachelors,51400,129800,45%
+30,Corporate Accounting & Finance,Bachelors,65200,129700,55%
+31,Mechatronics,Bachelors,72800,129600,48%
+32,Nuclear Engineering,Bachelors,76400,129400,62%
+33,Electrical Engineering (EE),Bachelors,75600,127700,54%
+33,Foreign Affairs,Bachelors,54800,127700,36%
+35,Marine Transportation Management,Bachelors,71100,127500,-
+36,Mechanical & Aeronautical Engineering,Bachelors,70900,126900,60%
+37,Welding Engineering,Bachelors,81000,126600,56%
+38,Instrumentation & Control Engineering,Bachelors,73100,126400,-
+39,Computational & Applied Mathematics,Bachelors,75500,126000,45%
+40,Electrical & Electronics Engineering (EEE),Bachelors,74700,125800,56%
+41,Aerospace Engineering,Bachelors,74300,125700,55%
+42,Astronomy,Bachelors,66600,125400,47%
+42,Optical Science & Engineering,Bachelors,71000,125400,-
+42,Quantitative Business Analysis,Bachelors,74000,125400,37%
+45,Computer Science (CS) & Mathematics,Bachelors,70500,125100,43%
+46,Industrial & Systems Engineering,Bachelors,73100,124800,48%
+47,Economics and Mathematics,Bachelors,68200,124100,35%
+48,Biomedical Engineering (BME),Bachelors,71300,123600,72%
+48,Managerial Economics,Bachelors,65200,123600,41%
+50,Computer Science (CS),Bachelors,75100,123400,42%
+50,Physics & Astronomy,Bachelors,56500,123400,36%
+52,Petroleum Land Management,Bachelors,59300,123100,-
+52,Bioscience,Bachelors,49200,123100,-
+54,Electronics & Communications Engineering,Bachelors,67400,122900,51%
+55,Control Engineering,Bachelors,69700,122800,61%
+56,Pharmacology,Bachelors,57700,122700,-
+57,Business Analysis,Bachelors,63200,122300,46%
+58,Aeronautical Science & Engineering,Bachelors,56000,122200,50%
+58,Metallurgical Engineering,Bachelors,81800,122200,61%
+60,Engineering Science,Bachelors,67900,122100,45%
+61,Applied Mathematics,Bachelors,68300,122000,40%
+62,Chemical & Biomolecular Engineering,Bachelors,76800,121900,48%
+63,Materials Science,Bachelors,67100,121800,-
+64,Engineering,Bachelors,69900,121700,59%
+65,Ocean Engineering (OE),Bachelors,69400,121400,51%
+66,Bioengineering (BioE),Bachelors,70900,121300,67%
+67,Aeronautical/Aerospace Engineering Technology,Bachelors,76900,121200,53%
+68,Integrated Science & Technology,Bachelors,65200,121100,56%
+69,Operations Management & Information Systems,Bachelors,66100,120900,38%
+70,Software Engineering,Bachelors,75000,120000,43%
+71,Physics,Bachelors,65900,119700,48%
+72,Quantitative Economics,Bachelors,65000,119600,43%
+73,Computer & Information Science,Bachelors,63600,119500,55%
+74,Geophysics,Bachelors,58000,119000,47%
+75,Accounting & Economics,Bachelors,65900,118900,44%
+76,Physician Assistant Studies,Bachelors,95900,118500,84%
+77,Mining Engineering,Bachelors,78800,118300,64%
+78,Construction Engineering Management,Bachelors,68800,118200,57%
+79,Mechanical Engineering (ME),Bachelors,71000,117600,50%
+80,Materials Science & Engineering,Bachelors,72700,117500,47%
+81,Engineering Mechanics,Bachelors,75500,117400,-
+81,Industrial Engineering (IE),Bachelors,71900,117400,44%
+81,International Business & Finance,Bachelors,61400,117400,31%
+84,Accounting & Computer Systems,Bachelors,63000,117300,37%
+85,Business & Information Technology (IT),Bachelors,60100,116900,44%
+86,Applied Physics,Bachelors,67300,116500,52%
+87,International Economics,Bachelors,58700,116300,48%
+88,Business & Economics,Bachelors,59600,116200,46%
+89,Ceramic Engineering,Bachelors,69200,115700,-
+89,Economics,Bachelors,62000,115700,41%
+89,Pharmaceutical Sciences (PS),Bachelors,52800,115700,69%
+92,Telecommunications Engineering,Bachelors,66400,115400,47%
+93,Information & Decision Sciences,Bachelors,65200,115200,33%
+93,Materials Engineering,Bachelors,72300,115200,58%
+93,Paper Science,Bachelors,77000,115200,39%
+96,Asian Studies,Bachelors,47700,115100,41%
+96,Structural Engineering (SE),Bachelors,67800,115100,66%
+98,Industrial Distribution,Bachelors,63600,115000,48%
+99,Management Information Systems (MIS),Bachelors,65000,114100,42%
+100,Electronics Engineering,Bachelors,69600,113900,66%
